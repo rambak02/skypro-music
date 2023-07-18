@@ -1,4 +1,4 @@
-export function SidebarPersonal(personalName) {
+export function SidebarPersonal({personalName}) {
     return (
         <div className="sidebar__personal">
         <p className="sidebar__personal-name">{personalName}</p>

@@ -8,7 +8,7 @@ export function Track ({title, titleSpan, author, album, time}) {
                 </svg>
             </div>
             <div className="track__title-text">
-                <a className="track__title-link" href="http://">{title}<span className="track__title-span">{titleSpan}</span></a>
+                <a className="track__title-link" href="http://">{title}<span className="track__title-span">    {titleSpan}</span></a>
             </div>
         </div>
         <div className="track__author">
