@@ -1,7 +1,7 @@
 import { Playlist } from "./Playlist";
 import { SidebarPersonal } from "./SidebarPersonal";
 
-export function Sidebar(props) {
+export function Sidebar() {
     return ( 
         <div className="main__sidebar sidebar">
        <SidebarPersonal personalName= "Sergey.Ivanov" />

@@ -1,4 +1,4 @@
-export function AudioPlayer(props) {
+export function AudioPlayer({title, author}) {
     return (
 <div className="bar">
 <div className="bar__content">
@@ -41,10 +41,10 @@ export function AudioPlayer(props) {
                         </svg>
                     </div>
                     <div className="track-play__author">
-                        <a className="track-play__author-link" href="http://"> {props.title}</a>
+                        <a className="track-play__author-link" href="http://"> {title}</a>
                     </div>
                     <div className="track-play__album">
-                        <a className="track-play__album-link" href="http://">{props.author}</a>
+                        <a className="track-play__album-link" href="http://">{author}</a>
                     </div>
                 </div>
 

@@ -1,7 +1,7 @@
-export function SidebarPersonal(props) {
+export function SidebarPersonal(personalName) {
     return (
         <div className="sidebar__personal">
-        <p className="sidebar__personal-name">{props.personalName}</p>
+        <p className="sidebar__personal-name">{personalName}</p>
         <div className="sidebar__avatar">
             
         </div>
