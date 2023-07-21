@@ -429,6 +429,9 @@ body {
         line-height: 24px;
         color: #696969;
     }
+    &__album-skeleton {
+        width: 316px;
+    }
 
     //&__time {}
 
@@ -731,6 +734,7 @@ body {
         stroke: #696969;
     }
 }
+
 
 
 
