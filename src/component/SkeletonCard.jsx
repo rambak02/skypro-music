@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css'
 import { musicData } from "./Data";
 const SkeletonCardTracklist = () => {
     return (
-        <SkeletonTheme baseColor="grey" highlightColor="#444">
+        <SkeletonTheme baseColor="#313131" highlightColor="#444">
        
            {musicData.find(section => section.section === "Tracklist").tracks.map((track, index)=> (
          <div key={index} className="playlist__item">
@@ -12,7 +12,7 @@ const SkeletonCardTracklist = () => {
              <div className="track__title">
                  <div className="track__title-image">
                      <svg className="track__title-svg" alt="music">
-                         <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+                        {<Skeleton width={50}/>}
                      </svg>
                  </div>
                  <div className="track__title-text">
@@ -37,7 +37,7 @@ const SkeletonCardTracklist = () => {
  export function SkeletonCardPlaylist() {
     return ( 
         musicData.find(section => section.section === "Sidebar").playlists.map((index)=> (
-            <SkeletonTheme key={index} baseColor="grey" highlightColor="#444">
+            <SkeletonTheme key={index} baseColor="#313131" highlightColor="#444">
                 <div className="sidebar__item">
                     <a className= "sidebar__img" href="#">
                      {<Skeleton width={250} height={150} />} 
@@ -48,7 +48,7 @@ const SkeletonCardTracklist = () => {
     )}
     export function SkeletonCardAudioPlayer() {
         return ( 
-            <SkeletonTheme baseColor="grey" highlightColor="#444">
+            <SkeletonTheme baseColor="#313131" highlightColor="#444">
             <div className="bar">
             <div className="bar__content">
                 <div className="bar__player-progress"></div>
@@ -86,7 +86,6 @@ const SkeletonCardTracklist = () => {
                             <div className="track-play__contain">
                                 <div className="track-play__image">
                                     <svg className="track-play__svg" alt="music">
-                                        <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
                                     </svg>
                                 </div>
                                 <div className="track-play__author">

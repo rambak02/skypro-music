@@ -8,11 +8,12 @@ import { Tracklist } from './component/Tracklist';
 import { musicData } from './component/Data';
 import { useState, useEffect } from 'react';
 import SkeletonCardTracklist, { SkeletonCardAudioPlayer} from './component/SkeletonCard';
-import Skeleton, {SkeletonTheme} from 'react-loading-skeleton'
+import { Dropdown } from './component/Dropdown';
 
 function App() {
+
+
   const [music, setMusic] = useState([]);
-  const [playlist, setPlaylist] = useState([])
   const [loading, setLoading] = useState(true);
 
  useEffect(() => {
@@ -20,7 +21,7 @@ function App() {
   const timer = setTimeout(() => {
     setMusic([musicData[2]]);
     setLoading(false);
-  }, 10000);
+  }, 1000);
   return () => clearTimeout(timer)
  }, []);
 
@@ -28,11 +29,11 @@ function App() {
     <div className="wrapper">
     <div className="container">
         <main className="main">   
-       { <NavMenu/>}
+       <NavMenu/>
             <div className="main__centerblock centerblock">
               <Search/>
                 <h2 className="centerblock__h2">Треки</h2>
-               <Filter/>
+               <Dropdown/>
                <div className="content__title playlist-title">
     <div className="playlist-title__col col01">Трек</div>
     <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>   
