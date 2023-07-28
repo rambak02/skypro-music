@@ -1,15 +1,12 @@
 import React, { useState } from "react";
 export function Dropdown() {
-    const [dropdownAuthorState, setDropdownAuthorState] = useState({openFilterAuthor: false});
-    const handleDropdownAuthorClick = () => { 
-    setDropdownAuthorState({ openFilterAuthor: !dropdownAuthorState.openFilterAuthor})
-    setDropdownGenreState({ openFilterGenre: false})
+    const [openFilter, setOpenFilter] = useState(null);
+    const openFilterGenreClick = () => { 
+    setOpenFilter("genre")
 };
-    const [dropdownGenreState, setDropdownGenreState] = useState({openFilterGenre: false});
-    const handleDropdownGenreClick = () => {
-    setDropdownGenreState({ openFilterGenre: !dropdownGenreState.openFilterGenre})
-    setDropdownAuthorState({ openFilterAuthor: false});
-};
+    const openFilterAuthorClick = () => {
+    setOpenFilter("author")
+    }
     
     
     return (
@@ -18,9 +15,9 @@ export function Dropdown() {
     </div>
     <div>
     <div className="filter__button button-author _btn-text"
-    onClick={handleDropdownAuthorClick}>исполнителю
+    onClick={openFilterAuthorClick}>исполнителю
     </div>
-    {dropdownAuthorState.openFilterAuthor && ( <ul 
+    {openFilter === "author" && ( <ul 
     className="button-author _dropdown ">
         <div className="_dropdown_container">
         <li className="author-dropdown _dropdown-text">Michael Jackson</li>
@@ -37,8 +34,8 @@ export function Dropdown() {
     
     <div>
     <div className="filter__button button-genre _btn-text"
-    onClick={handleDropdownGenreClick}>жанру</div>
-    {dropdownGenreState.openFilterGenre && ( <ul className=" button-genre _dropdown  ">
+    onClick={openFilterGenreClick}>жанру</div>
+    {openFilter === "genre" && ( <ul className=" button-genre _dropdown  ">
         <div className="_dropdown_container">
         <li className="genre-dropdown _dropdown-text">Хип-хоп</li>
         <li className="genre-dropdown _dropdown-text">Поп-музыка</li>
