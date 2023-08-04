@@ -1,14 +1,18 @@
-import './App.scss';
-import { AudioPlayer } from './component/AudioPlayer';
-import { Filter } from './component/Filter';
-import { NavMenu } from './component/NavMenu';
-import { Search } from './component/Search';
-import { Sidebar } from './component/Sidebar';
-import { Tracklist } from './component/Tracklist';
+
+import React, { Fragment } from 'react';
+
+import { AudioPlayer } from './component/AudioPlayer/AudioPlayer';
+import { NavMenu } from './component/NavMenu/NavMenu';
+import { Search } from './component/Search/Search';
+import { Sidebar } from './component/Sidebar/Sidebar';
+import { Tracklist } from './component/Tracklist/Tracklist';
 import { musicData } from './component/Data';
 import { useState, useEffect } from 'react';
-import SkeletonCardTracklist, { SkeletonCardAudioPlayer} from './component/SkeletonCard';
-import { Dropdown } from './component/Dropdown';
+import SkeletonCardTracklist, { SkeletonCardAudioPlayer} from './component/SkeletonCard/SkeletonCard';
+import { Dropdown } from './component/Dropdown/Dropdown';
+import { StyledMainCenterBlock, StyledCenterBlockH2, StyledWrapper, StyledContainer, StyledContentTitle, StyledPlaylistTitleCol1, StyledPlaylistTitleCol2, StyledPlaylistTitleCol3, StyledPlaylistTitleCol4, StyledPlaylistTitleSvg, StyledMain } from './styled/styled';
+import { GlobalStyle } from './styled/global';
+
 
 function App() {
 
@@ -25,25 +29,28 @@ function App() {
   return () => clearTimeout(timer)
  }, []);
 
-  return (  
-    <div className="wrapper">
-    <div className="container">
-        <main className="main">   
+  return ( 
+    <Fragment>
+    <GlobalStyle/>
+  
+    <StyledWrapper>
+    <StyledContainer>
+        <StyledMain > 
        <NavMenu/>
-            <div className="main__centerblock centerblock">
+            <StyledMainCenterBlock>
               <Search/>
-                <h2 className="centerblock__h2">Треки</h2>
+                <StyledCenterBlockH2>Треки</StyledCenterBlockH2>
                <Dropdown/>
-               <div className="content__title playlist-title">
-    <div className="playlist-title__col col01">Трек</div>
-    <div className="playlist-title__col col02">ИСПОЛНИТЕЛЬ</div>   
-    <div className="playlist-title__col col03">АЛЬБОМ</div>
-    <div className="playlist-title__col col04">
-        <svg className="playlist-title__svg" alt="time">
+               <StyledContentTitle>
+    <StyledPlaylistTitleCol1>Трек</StyledPlaylistTitleCol1>
+    <StyledPlaylistTitleCol2>ИСПОЛНИТЕЛЬ</StyledPlaylistTitleCol2>   
+    <StyledPlaylistTitleCol3>АЛЬБОМ</StyledPlaylistTitleCol3>
+    <StyledPlaylistTitleCol4>
+        <StyledPlaylistTitleSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-watch"></use>
-        </svg>
-    </div>
-</div>
+        </StyledPlaylistTitleSvg>
+    </StyledPlaylistTitleCol4>
+</StyledContentTitle>
 
       {!loading &&
                 music.map((list, index)=> {
@@ -53,10 +60,9 @@ function App() {
                 })
               || <SkeletonCardTracklist /> }
            
-            </div>
-            <Sidebar loading={loading} /> 
-          
-        </main>
+            </StyledMainCenterBlock>
+            <Sidebar loading={loading} />   
+        </StyledMain>
             {!loading && musicData.find(section => section.section === "AudioPlaylist").audios.map((audio, index)=> (
         <AudioPlayer 
         key={index}
@@ -65,8 +71,9 @@ function App() {
         />
     )) ||  <SkeletonCardAudioPlayer/>}
         <footer className="footer"></footer>
-    </div>
-</div>
+    </StyledContainer>
+</StyledWrapper>
+</Fragment>
   );
 }
 
