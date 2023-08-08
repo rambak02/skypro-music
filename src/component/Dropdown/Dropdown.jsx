@@ -4,10 +4,13 @@ import { StyledFilterButton, StyledDropdownContainer, StyledDropdownText, Styled
 export function Dropdown() {
     const [openFilter, setOpenFilter] = useState(null);
     const openFilterGenreClick = () => { 
+        if (openFilter === "genre") {setOpenFilter(null) } else {
     setOpenFilter("genre")
+        }
 };
     const openFilterAuthorClick = () => {
-    setOpenFilter("author")
+        if (openFilter === "author") {setOpenFilter(null) } else { 
+    setOpenFilter("author")}
     }
   
     return (

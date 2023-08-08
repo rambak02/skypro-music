@@ -1,5 +1,5 @@
 import { Track } from "../Track/Track"
-import {musicData} from "../Data";
+import {musicData} from "../../Data";
 import { StyledCenterBlockContent, StyledContentPlaylist} from "./Tracklist.styled"
 
 

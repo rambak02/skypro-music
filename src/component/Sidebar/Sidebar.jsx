@@ -1,8 +1,10 @@
 import { Playlist } from "../Playlist/Playlist";
 import { SidebarPersonal } from "../SidebarPersonal/SidebarPersonal";
-import { musicData } from "../Data";
+import { musicData } from "../../Data";
 import { SkeletonCardPlaylist} from "../SkeletonCard/SkeletonCard";
 import { StyledMainSidebar, StyledSidebarBlock, StyledSidebarList  } from "./Sidebar.styled";
+import { Link } from "react-router-dom";
+
 
 
 
@@ -12,9 +14,10 @@ export function Sidebar({loading}) {
        <SidebarPersonal personalName= "Sergey.Ivanov" />
         <StyledSidebarBlock>
             <StyledSidebarList>
-            {!loading && musicData.find(section => section.section === "Sidebar").playlists.map((playlist, index)=> (
+            {!loading && musicData.find(section => section.section === "Sidebar").playlists.map((playlist)=> (  
         <Playlist 
-        key={index}
+        id = {playlist.id}
+        key={playlist.id}
         imgUrl={playlist.imgUrl}
         alt={playlist.alt}
         /> 

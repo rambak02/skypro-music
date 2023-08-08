@@ -67,6 +67,7 @@ width: 180px;
 `
 export const StyledDropdownText = styled.li`
 cursor: pointer;
+
 &:hover {
 text-decoration: underline;
 color: #AD61FF;
