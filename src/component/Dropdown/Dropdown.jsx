@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { styled, css } from "styled-components";
 import { StyledFilterButton, StyledDropdownContainer, StyledDropdownText, StyledFilterTitle, StyledFilterCenterBlock, StyledDropdown  } from "./Dropdown.styled"
 export function Dropdown() {
     const [openFilter, setOpenFilter] = useState(null);

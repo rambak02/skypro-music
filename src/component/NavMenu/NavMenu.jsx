@@ -21,7 +21,7 @@ export function NavMenu() {
             <StyledMenuList>
                 <StyledMenuItem ><StyledMenuLink href="http://">  Главное</StyledMenuLink></StyledMenuItem>
                 <StyledMenuItem><Link to="/favorites"><StyledMenuLink href="http://">Мой плейлист </StyledMenuLink></Link></StyledMenuItem>
-                <StyledMenuItem><StyledMenuLink href="http://">Войти</StyledMenuLink></StyledMenuItem>
+                <StyledMenuItem><Link  to={`/login`}><StyledMenuLink href="http://">Выйти</StyledMenuLink></Link></StyledMenuItem>
             </StyledMenuList>
         </StyledNavMenu>)}
        
