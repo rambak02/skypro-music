@@ -1,6 +1,6 @@
 import { Playlist } from "../Playlist/Playlist";
 import { SidebarPersonal } from "../SidebarPersonal/SidebarPersonal";
-import { musicData } from "../../Data";
+import { musicData } from "../../constants";
 import { SkeletonCardPlaylist} from "../SkeletonCard/SkeletonCard";
 import { StyledMainSidebar, StyledSidebarBlock, StyledSidebarList  } from "./Sidebar.styled";
 

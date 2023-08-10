@@ -1,7 +1,7 @@
 import React from "react";
 import Skeleton, {SkeletonTheme } from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
-import { musicData } from "../../Data";
+import { musicData } from "../../constants";
 import { StyledSidebarLink, StyledSidebarItem, StyledPlaylistItem, StyledPlaylistTrack } from "../Playlist/Playlist.styled";
 import { StyledBar, StyledBarContent, StyledBarPlayer, StyledBarPlayerBlock, StyledBarPlayerProgress, StyledButtonPrevSvg, StyledButtonPrev, StyledPlayerControls, StyledButtonPlay, StyledButtonPlaySvg, StyledButtonNext, StyledButtonNextSvg, StyledButtonRepeat, StyledButtonShuffle, StyledButtonRepeatSvg, StyledButtonShuffleSvg, StyledBarVolumeBlock, StyledBarVolumeContent, StyledVolumeImage, StyledVolumeSvg, StyledVolumeProgress, StyledVolumeProgressLine, StyledPlayTrack, StyledPlayTrackAlbum, StyledPlayTrackAlbumLink, StyledPlayTrackAuthor, StyledPlayTrackAuthorLink, StyledPlayTrackContainer, StyledPlayTrackImage, StyledPlayTrackLikeDis, StyledPlayTrackSvg, StyledTrackDislike, StyledTrackDislikeSvg, StyledTrackLike, StyledTrackLikeSvg } from "../AudioPlayer/AudioPLayer.styled";
 import { StyledTrackAlbumSkeleton } from "./SkeletonCard.styled";

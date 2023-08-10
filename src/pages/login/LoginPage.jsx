@@ -1,19 +1,12 @@
 import { LoginForm } from "../../component/LoginForm/LoginForm"
-import { styled } from "styled-components"
+import { StyledLoginContainer } from "./LoginPage.styled"
 
-const StyledLoginContainer = styled.div`
-background-color: #383838;
-display: flex;
-align-items: center;
-justify-content: space-around;
-width: 100vw;
-height: 100vh;
-`
 
-export const Login = () => {
+
+export const Login = ({onAuthButtonClick}) => {
     return (
         <StyledLoginContainer >
-            <LoginForm/>
+            <LoginForm onAuthButtonClick={onAuthButtonClick}/>
         </StyledLoginContainer>
     )
     }

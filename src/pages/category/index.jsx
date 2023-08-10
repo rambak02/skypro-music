@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { musicData } from "../../Data";
+import { musicData } from "../../constants";
 
 export const Category = () => {
 const params = useParams()

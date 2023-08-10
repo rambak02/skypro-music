@@ -6,15 +6,21 @@ import { Category } from "./pages/category";
 import { Login } from "./pages/login/LoginPage";
 import {Register } from "./pages/register"
 
-export const AppRoutes = () => {
+import { ProtectedRoute } from "./component/protected-route/ProtectedRoute";
+
+export const AppRoutes = ({ user, onAuthButtonClick }) => {
 return (
     <Routes>
+<Route element= {<ProtectedRoute isAllowed={user}/>}>
         <Route path="/" element={<Main />}/>
         <Route path="/favorites" element={<Favorites />}/>
         <Route path= "/category/:id" element={<Category />}/>
+</Route>
+        
+        <Route path="/login" element={<Login onAuthButtonClick={onAuthButtonClick} />}/>
+        <Route path="/register" element={<Register />}/>
+
         <Route path="*" element={<NotFound />}/>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
     </Routes>
 );
 };

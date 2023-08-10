@@ -5,7 +5,7 @@ import { NavMenu } from '../../component/NavMenu/NavMenu';
 import { Search } from '../../component/Search/Search';
 import { Sidebar } from '../../component/Sidebar/Sidebar';
 import { Tracklist } from '../../component/Tracklist/Tracklist';
-import { musicData } from '../../Data';
+import { musicData } from '../../constants';
 
 import SkeletonCardTracklist, { SkeletonCardAudioPlayer} from '../../component/SkeletonCard/SkeletonCard';
 import { Dropdown } from '../../component/Dropdown/Dropdown';
@@ -16,7 +16,7 @@ import { useState, useEffect } from 'react';
 
 export const Main = () => {
     const [music, setMusic] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true)
     
      useEffect(() => {
       setLoading(true);
@@ -33,7 +33,8 @@ export const Main = () => {
     <StyledWrapper>
     <StyledContainer>
         <StyledMain > 
-       <NavMenu/>
+       <NavMenu
+       />
             <StyledMainCenterBlock>
               <Search/>
                 <StyledCenterBlockH2>Треки</StyledCenterBlockH2>
@@ -67,7 +68,6 @@ export const Main = () => {
         author={audio.author}
         />
     )) ||  <SkeletonCardAudioPlayer/>}
-        <footer className="footer"></footer>
     </StyledContainer>
 </StyledWrapper>
 </Fragment>
