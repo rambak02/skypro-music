@@ -1,22 +1,22 @@
-import { styled } from "styled-components"
+import { styled } from 'styled-components'
 
 export const StyledMainSidebar = styled.div`
-flex: 1 1 auto;
-display: flex;
-flex-wrap: wrap;
-justify-content: space-between;
-max-width: 418px;
-    padding: 20px 90px 20px 78px;
+  flex: 1 1 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 418px;
+  padding: 20px 90px 20px 78px;
 `
 export const StyledSidebarBlock = styled.div`
-height: 100%;
-padding: 240px 0 0 0;
-display: flex;
-flex-direction: column;
-justify-content: flex-start;
+  height: 100%;
+  padding: 240px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 `
 export const StyledSidebarList = styled.div`
-display: flex;
-flex-direction: column;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `

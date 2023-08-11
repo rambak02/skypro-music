@@ -1,7 +1,7 @@
 export const Favorites = () => {
-return (
+  return (
     <div>
-        <h1>Favorites Track</h1>
+      <h1>Favorites Track</h1>
     </div>
-)
+  )
 }
