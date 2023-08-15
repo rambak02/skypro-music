@@ -14,7 +14,7 @@ export function Sidebar({ loading }) {
       <SidebarPersonal personalName="Sergey.Ivanov" />
       <StyledSidebarBlock>
         <StyledSidebarList>
-          {(!loading &&
+          {(loading &&
             musicData
               .find((section) => section.section === 'Sidebar')
               .playlists.map((playlist) => (

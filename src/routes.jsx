@@ -8,11 +8,29 @@ import { Register } from './pages/register'
 
 import { ProtectedRoute } from './component/ProtectedRoute/ProtectedRoute'
 
-export const AppRoutes = ({ user, onAuthButtonClick }) => {
+export const AppRoutes = ({
+  user,
+  onAuthButtonClick,
+  music,
+  loading,
+  getTracksError,
+setCurrentTrack
+}) => {
   return (
     <Routes>
       <Route element={<ProtectedRoute isAllowed={user} />}>
-        <Route path="/" element={<Main />} />
+        <Route
+          path="/"
+          element={
+            <Main
+          
+              music={music}
+              loading={loading}
+              getTracksError={getTracksError}
+             setCurrentTrack={setCurrentTrack}
+            />
+          }
+        />
         <Route path="/favorites" element={<Favorites />} />
         <Route path="/category/:id" element={<Category />} />
       </Route>

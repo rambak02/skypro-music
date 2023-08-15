@@ -1,19 +1,15 @@
 import { Track } from '../Track/Track'
-import { musicData } from '../../constants'
+
 import {
   StyledCenterBlockContent,
   StyledContentPlaylist,
 } from './Tracklist.styled'
 
-export function Tracklist({ list }) {
+export function Tracklist({track, setCurrentTrack, currentTrack}) {
   return (
     <StyledCenterBlockContent>
       <StyledContentPlaylist>
-        {musicData
-          .find((section) => section.section === 'Tracklist')
-          .tracks.map((track, index) => (
-            <Track key={index} track={track} />
-          ))}
+            <Track key={track.id} track={track} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack}/>
       </StyledContentPlaylist>
     </StyledCenterBlockContent>
   )

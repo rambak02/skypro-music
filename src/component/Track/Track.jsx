@@ -16,10 +16,18 @@ import {
   StyledTrackTimeText,
 } from '../Track/Track.styled.jsx'
 
-export function Track({ track }) {
+function formatDuration(trackTime) {
+  const minutes = Math.floor(trackTime / 60);
+  const seconds = trackTime % 60;
+  const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
+  return minutes + ' : ' + formattedSeconds;
+}
+export function Track({ track, setCurrentTrack}) {
   return (
-    <StyledPlaylistItem>
-      <StyledPlaylistTrack>
+    <StyledPlaylistItem onClick={() =>  setCurrentTrack(track)
+    
+     }  >
+      <StyledPlaylistTrack >
         <StyledTrackTitles>
           <StyledTrackTitleImage>
             <StyledTrackTitleSvg alt="music">
@@ -28,7 +36,7 @@ export function Track({ track }) {
           </StyledTrackTitleImage>
           <div>
             <StyledTrackTitleLink href="http://">
-              {track.title}
+              {track.name}
               <StyledTrackTitleSpan> {track.titleSpan}</StyledTrackTitleSpan>
             </StyledTrackTitleLink>
           </div>
@@ -48,7 +56,7 @@ export function Track({ track }) {
           <StyledTrackTimeSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
           </StyledTrackTimeSvg>
-          <StyledTrackTimeText>{track.time}</StyledTrackTimeText>
+          <StyledTrackTimeText>{ formatDuration(track.duration_in_seconds) }</StyledTrackTimeText>
         </div>
       </StyledPlaylistTrack>
     </StyledPlaylistItem>

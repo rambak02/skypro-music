@@ -23,6 +23,7 @@ export const musicData = [
     section: 'Tracklist',
     tracks: [
       {
+        id: 4,
         title: 'Cuilt',
         titleSpan: '',
         author: 'Welcome Reality',
@@ -30,6 +31,7 @@ export const musicData = [
         time: '4:44',
       },
       {
+        id: 5,
         title: 'Elektro',
         titleSpan: '',
         author: 'Dynoro Outwork, Mr. Gee',
@@ -37,6 +39,7 @@ export const musicData = [
         time: '2:22',
       },
       {
+        id: 6,
         title: 'I’m Fire',
         titleSpan: '',
         author: 'Ali Bakgor',
@@ -44,6 +47,7 @@ export const musicData = [
         time: '2:22',
       },
       {
+        id: 7,
         title: 'Non Stop',
         titleSpan: ' (Remix)',
         author: 'Стоункат, Psychopath',
@@ -51,6 +55,7 @@ export const musicData = [
         time: '2:54',
       },
       {
+        id: 8,
         title: 'Run Run',
         titleSpan: ' (feat. AR/CO)',
         author: 'Jaded, Will Clarke, AR/CO',
@@ -58,6 +63,7 @@ export const musicData = [
         time: '4:44',
       },
       {
+        id: 9,
         title: 'Eyes on Fire',
         titleSpan: ' (Zeds Dead Remix)',
         author: 'Blue Foundation, Zeds Dead',
@@ -65,6 +71,7 @@ export const musicData = [
         time: '5:20',
       },
       {
+        id: 10,
         title: 'Mucho Bien',
         titleSpan: '(Hi Profile Remix)',
         author: 'HYBIT, Mr. Black, Offer Nissim, Hi Profile',
@@ -72,6 +79,7 @@ export const musicData = [
         time: '3:41',
       },
       {
+        id: 11,
         title: 'Knives n Cherries',
         titleSpan: '',
         author: 'minthaze',
@@ -79,6 +87,7 @@ export const musicData = [
         time: '1:48',
       },
       {
+        id: 12,
         title: 'How Deep Is Your Love',
         titleSpan: '',
         author: 'Calvin Harris, Disciples',
@@ -86,6 +95,7 @@ export const musicData = [
         time: '3:32',
       },
       {
+        id: 13,
         title: 'Morena',
         titleSpan: '',
         author: 'Tom Boxer',
@@ -93,6 +103,7 @@ export const musicData = [
         time: '3:36',
       },
       {
+        id: 14,
         title: 'How Deep Is Your Love',
         titleSpan: '',
         author: 'Calvin Harris, Disciples',
@@ -100,14 +111,5 @@ export const musicData = [
         time: '4:44',
       },
     ],
-  },
-  {
-    section: 'AudioPlaylist',
-    audios: [
-      {
-        title: 'Ты та...',
-        author: 'Баста',
-      },
-    ],
-  },
+  }
 ]

@@ -35,7 +35,7 @@ import {
   StyledVolumeProgressLine,
   StyledVolumeSvg,
 } from './AudioPLayer.styled'
-export function AudioPlayer({ title, author }) {
+export function AudioPlayer({ currentTrack }) {
   return (
     <StyledBar>
       <StyledBarContent>
@@ -80,12 +80,12 @@ export function AudioPlayer({ title, author }) {
                 <StyledPlayTrackAuthor>
                   <StyledPlayTrackAuthorLink href="http://">
                     {' '}
-                    {title}
+                    {currentTrack.name}
                   </StyledPlayTrackAuthorLink>
                 </StyledPlayTrackAuthor>
                 <StyledPlayTrackAlbum>
                   <StyledPlayTrackAlbumLink href="http://">
-                    {author}
+                    {currentTrack.author}
                   </StyledPlayTrackAlbumLink>
                 </StyledPlayTrackAlbum>
               </StyledPlayTrackContainer>
