@@ -1,12 +1,13 @@
 import 'react-loading-skeleton/dist/skeleton.css'
-import { StyledSidebarImage, StyledSidebarLink, StyledSidebarItem } from './Playlist.styled'
+import { StyledSidebarImage, StyledSidebarItem } from './Playlist.styled'
+import { Link } from 'react-router-dom'
 
-
-export function Playlist({imgUrl, alt}) {
-    return ( 
-                <StyledSidebarItem>
-                    <StyledSidebarLink  href="#">
-                        <StyledSidebarImage  src= {imgUrl} alt={alt} />
-                    </StyledSidebarLink>
-                </StyledSidebarItem>
-    )}
+export function Playlist({ imgUrl, alt, id }) {
+  return (
+    <StyledSidebarItem>
+      <Link to={`/category/${id}`}>
+        <StyledSidebarImage src={imgUrl} alt={alt} />
+      </Link>
+    </StyledSidebarItem>
+  )
+}
