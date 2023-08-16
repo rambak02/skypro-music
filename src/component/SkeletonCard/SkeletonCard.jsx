@@ -56,13 +56,15 @@ import {
   StyledTrackAuthorLink,
 } from '../Track/Track.styled'
 
+
+
 const SkeletonCardTracklist = () => {
   return (
     <SkeletonTheme baseColor="#313131" highlightColor="#444">
       {musicData
         .find((section) => section.section === 'Tracklist')
-        .tracks.map((track, index) => (
-          <StyledPlaylistItem key={index}>
+        .tracks.map((track) => (
+          <StyledPlaylistItem key={track.id}>
             <StyledPlaylistTrack>
               <StyledTrackTitles>
                 <StyledTrackTitleImage>
@@ -95,8 +97,8 @@ const SkeletonCardTracklist = () => {
 export function SkeletonCardPlaylist() {
   return musicData
     .find((section) => section.section === 'Sidebar')
-    .playlists.map((index) => (
-      <SkeletonTheme key={index} baseColor="#313131" highlightColor="#444">
+    .playlists.map((e) => (
+      <SkeletonTheme key={e.id} baseColor="#313131" highlightColor="#444">
         <StyledSidebarItem>
           <StyledSidebarLink href="#">
             {<Skeleton width={250} height={150} />}

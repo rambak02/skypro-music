@@ -24,22 +24,13 @@ import {
   StyledPlaylistTitleSvg,
   StyledMain,
 } from '../../styled/styled'
+import {StyledGetTrackError} from "./MainPage.styled"
 import { GlobalStyle } from '../../styled/global'
 
-import { useState, useEffect } from 'react'
 
-export const Main = () => {
-  const [music, setMusic] = useState([])
-  const [loading, setLoading] = useState(true)
 
-  useEffect(() => {
-    setLoading(true)
-    const timer = setTimeout(() => {
-      setMusic([musicData[2]])
-      setLoading(false)
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [])
+export const Main = ({music, getTracksError, loading, setCurrentTrack }) => {
+
   return (
     <Fragment>
       <GlobalStyle />
@@ -63,23 +54,14 @@ export const Main = () => {
                 </StyledPlaylistTitleCol4>
               </StyledContentTitle>
 
-              {(!loading &&
-                music.map((list, index) => {
-                  return <Tracklist key={index} list={list} />
+              {getTracksError ? (<StyledGetTrackError>{getTracksError}</StyledGetTrackError>) : (loading &&
+                music.map((track) => {
+                  return <Tracklist key={track.id} track={track} setCurrentTrack = {setCurrentTrack}/>
                 })) || <SkeletonCardTracklist />}
             </StyledMainCenterBlock>
             <Sidebar loading={loading} />
           </StyledMain>
-          {(!loading &&
-            musicData
-              .find((section) => section.section === 'AudioPlaylist')
-              .audios.map((audio, index) => (
-                <AudioPlayer
-                  key={index}
-                  title={audio.title}
-                  author={audio.author}
-                />
-              ))) || <SkeletonCardAudioPlayer />}
+         
         </StyledContainer>
       </StyledWrapper>
     </Fragment>

@@ -1,6 +1,7 @@
 import { styled, css } from 'styled-components'
 
 export const StyledBar = styled.div`
+z-index: 99;
   position: absolute;
   bottom: 0;
   left: 0;
