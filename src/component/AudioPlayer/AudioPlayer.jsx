@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import {
   StyledBar,
   StyledBarContent,
@@ -34,9 +35,35 @@ import {
   StyledVolumeProgress,
   StyledVolumeProgressLine,
   StyledVolumeSvg,
+  StyledAudio
 } from './AudioPLayer.styled'
-export function AudioPlayer({ currentTrack }) {
+
+export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying }) {
+
+  const audioRef = useRef(null);
+
+  const handleStart = () => {
+    audioRef.current.play();
+    setIsPlaying(true);
+  };
+
+  const handleStop = () => {
+    audioRef.current.pause();
+    setIsPlaying(false);
+  };
+
+  const togglePlay = isPlaying ? handleStop : handleStart;
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play()
+    }
+  }, [currentTrack]);
   return (
+    
+    <>
+    <StyledAudio controls ref={audioRef}>
+    <source src={currentTrack.track_file} type="audio/mpeg" />
+  </StyledAudio>
     <StyledBar>
       <StyledBarContent>
         <StyledBarPlayerProgress></StyledBarPlayerProgress>
@@ -48,9 +75,9 @@ export function AudioPlayer({ currentTrack }) {
                   <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                 </StyledButtonPrevSvg>
               </StyledButtonPrev>
-              <StyledButtonPlay className="_btn">
+              <StyledButtonPlay className="_btn" onClick={togglePlay}>
                 <StyledButtonPlaySvg alt="play">
-                  <use xlinkHref="img/icon/sprite.svg#icon-play"></use>
+                  <use xlinkHref= {isPlaying ? "img/icon/sprite.svg#icon-pause": "img/icon/sprite.svg#icon-play"}></use>
                 </StyledButtonPlaySvg>
               </StyledButtonPlay>
               <StyledButtonNext>
@@ -123,5 +150,6 @@ export function AudioPlayer({ currentTrack }) {
         </StyledBarPlayerBlock>
       </StyledBarContent>
     </StyledBar>
+    </>
   )
 }

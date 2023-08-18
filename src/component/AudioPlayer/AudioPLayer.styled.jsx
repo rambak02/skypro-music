@@ -1,5 +1,9 @@
 import { styled, css } from 'styled-components'
 
+export const StyledAudio = styled.audio`
+display: none;
+`
+
 export const StyledBar = styled.div`
 z-index: 99;
   position: absolute;
@@ -55,6 +59,12 @@ export const StyledButtonPlaySvg = styled.svg`
   width: 22px;
   height: 20px;
   fill: #d9d9d9;
+  &:hover {
+    fill: #696969;
+  }
+  &:active {
+    fill: #D9D9D9;
+  }
 `
 export const StyledButtonNext = styled.div`
   ${buttonMixin};
@@ -119,7 +129,7 @@ export const StyledPlayTrackSvg = styled.svg`
 
 export const StyledPlayTrackAuthor = styled.div`
   grid-area: author;
-  min-width: 49px;
+  width: 120px;
 `
 export const StyledPlayTrackAuthorLink = styled.a`
   font-style: normal;

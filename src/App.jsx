@@ -15,18 +15,10 @@ function App() {
   const [music, setMusic] = useState([])
   const [loading, setLoading] = useState(false)
   const [getTracksError, setGetTracksError] = useState(null)
+  const [isPlaying, setIsPlaying] = useState(false);
 
   useEffect(() => {
-    // 1. Вариант
-    //  getTracks()
-    // .then((tracks) => {
-    //   setMusic(tracks);
-    //   setLoading(true);
-    // })
-    // .catch((error) => {
-    //   setGetTracksError('Не удалось загрузить плейлист, попробуйте позже');
-    //   setLoading(true);
-    // });
+ 
     async function fetchTracks() {
       try {
         const tracks = await getTracks()
@@ -47,10 +39,13 @@ function App() {
       {currentTrack ?  <AudioPlayer
           key={currentTrack.id}
           currentTrack = {currentTrack}
+         isPlaying={isPlaying} 
+         setIsPlaying={setIsPlaying}
         /> : null}
        
     
       <AppRoutes
+       setIsPlaying={setIsPlaying}
        setCurrentTrack ={setCurrentTrack}
         user={user}
         onAuthButtonClick={handleLogin}

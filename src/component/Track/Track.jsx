@@ -22,10 +22,14 @@ function formatDuration(trackTime) {
   const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
   return minutes + ' : ' + formattedSeconds;
 }
-export function Track({ track, setCurrentTrack}) {
+export function Track({ track, setCurrentTrack, setIsPlaying}) {
+  const handleTrackClick = () => {
+    setCurrentTrack(track);
+    setIsPlaying(true);
+  
+  };
   return (
-    <StyledPlaylistItem onClick={() =>  setCurrentTrack(track)
-    
+    <StyledPlaylistItem onClick={handleTrackClick
      }  >
       <StyledPlaylistTrack >
         <StyledTrackTitles>
