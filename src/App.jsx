@@ -16,7 +16,9 @@ function App() {
   const [loading, setLoading] = useState(false)
   const [getTracksError, setGetTracksError] = useState(null)
   const [isPlaying, setIsPlaying] = useState(false);
-
+  const [isRepeat, setIsRepeat] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(1);
   useEffect(() => {
  
     async function fetchTracks() {
@@ -37,6 +39,13 @@ function App() {
     <Fragment>
       <GlobalStyle />
       {currentTrack ?  <AudioPlayer
+      volume={volume}
+      setVolume={setVolume}
+      duration = {currentTrack.duration_in_seconds}
+      currentTime= {currentTime}
+      setCurrentTime={setCurrentTime}
+       isRepeat = {isRepeat}
+       setIsRepeat= {setIsRepeat}
           key={currentTrack.id}
           currentTrack = {currentTrack}
          isPlaying={isPlaying} 

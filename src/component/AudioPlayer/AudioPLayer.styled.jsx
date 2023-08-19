@@ -16,11 +16,6 @@ export const StyledBarContent = styled.div`
   display: flex;
   flex-direction: column;
 `
-export const StyledBarPlayerProgress = styled.div`
-  width: 100%;
-  height: 5px;
-  background: #2e2e2e;
-`
 export const StyledBarPlayerBlock = styled.div`
   height: 73px;
   display: flex;
@@ -86,6 +81,12 @@ export const StyledButtonRepeatSvg = styled.svg`
   height: 12px;
   fill: transparent;
   stroke: #696969;
+`
+export const StyledButtonRepeatSvgActive = styled.svg`
+  width: 18px;
+  height: 12px;
+  fill: transparent;
+  stroke: #FFFFFF;
 `
 
 export const StyledButtonShuffle = styled.div`
@@ -198,9 +199,53 @@ export const StyledVolumeSvg = styled.svg`
   fill: transparent;
 `
 export const StyledVolumeProgress = styled.div`
+display: flex;
   width: 109px;
 `
 
 export const StyledVolumeProgressLine = styled.input`
-  width: 109px;
+--progress-color: white;
+--progress-bg-color: #2e2e2e;
+overflow: hidden;
+    height: 5px;
+  width: 109px
+  &::-webkit-slider-runnable-track {
+    position: relative;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+  }
+  &::-webkit-slider-thumb {
+    --thumb-height: 1px;
+    --thumb-width: 1px;
+    position: relative;
+    -webkit-appearance: none;
+    width: var(--thumb-width, var(--thumb-height));
+    box-shadow: calc(-100vmax - var(--thumb-width, var(--thumb-height))) 0 0
+      100vmax var(--progress-color);
+  }
+
+  &::-webkit-slider-runnable-track {
+    background: var(--progress-bg-color);
+  }
+
+  /* FF */
+  &::-moz-range-track {
+    width: 100%;
+    height: var(--progress-height);
+    background: var(--progress-bg-color);
+    border: none;
+    border-radius: 0px;
+  }
+  &::-moz-range-thumb {
+    border: none;
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    background: transparent;
+  }
+  &::-moz-range-progress {
+    background-color: var(--progress-color);
+    height: var(--progress-height);
+  }
+
 `

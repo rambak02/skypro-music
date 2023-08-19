@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react';
+import ProgressBar from "./ProgressBar"
 import {
   StyledBar,
   StyledBarContent,
   StyledBarPlayer,
   StyledBarPlayerBlock,
-  StyledBarPlayerProgress,
   StyledBarVolumeBlock,
   StyledBarVolumeContent,
   StyledButtonNext,
@@ -15,6 +15,7 @@ import {
   StyledButtonPrevSvg,
   StyledButtonRepeat,
   StyledButtonRepeatSvg,
+  StyledButtonRepeatSvgActive,
   StyledButtonShuffle,
   StyledButtonShuffleSvg,
   StyledPlayTrack,
@@ -38,7 +39,7 @@ import {
   StyledAudio
 } from './AudioPLayer.styled'
 
-export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying }) {
+export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying, isRepeat, setIsRepeat, setCurrentTime, currentTime, volume, setVolume  }) {
 
   const audioRef = useRef(null);
 
@@ -50,8 +51,41 @@ export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying }) {
   const handleStop = () => {
     audioRef.current.pause();
     setIsPlaying(false);
+    
   };
 
+  const handleProgressBarChange = (newTime) => {
+    setCurrentTime(newTime);
+    audioRef.current.currentTime = newTime;
+  };
+  const handleVolumeChange = (e) => {
+    const newVolume = e.target.value;
+    setVolume(newVolume);
+    audioRef.current.volume = newVolume;
+  };
+  
+  useEffect(() => {
+    const audioElement = audioRef.current;
+  
+    if (audioElement) {
+      audioElement.addEventListener('timeupdate', handleTimeUpdate);
+  
+      return () => {
+        audioElement.removeEventListener('timeupdate', handleTimeUpdate);
+      };
+    }
+  }, [audioRef]);
+  
+
+  const handleTimeUpdate = () => {
+    const currentTime = audioRef.current.currentTime;
+    setCurrentTime(currentTime);
+  };
+  const handleRepeat = () => {
+
+    audioRef.current.loop = !isRepeat;
+  setIsRepeat(!isRepeat);
+  }
   const togglePlay = isPlaying ? handleStop : handleStart;
   useEffect(() => {
     if (audioRef.current) {
@@ -61,12 +95,12 @@ export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying }) {
   return (
     
     <>
-    <StyledAudio controls ref={audioRef}>
+    <StyledAudio controls ref={audioRef} >
     <source src={currentTrack.track_file} type="audio/mpeg" />
   </StyledAudio>
     <StyledBar>
       <StyledBarContent>
-        <StyledBarPlayerProgress></StyledBarPlayerProgress>
+   <ProgressBar duration={currentTrack.duration_in_seconds} currentTime={currentTime} setCurrentTime={handleProgressBarChange} ></ProgressBar>
         <StyledBarPlayerBlock>
           <StyledBarPlayer>
             <StyledPlayerControls>
@@ -85,10 +119,12 @@ export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying }) {
                   <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                 </StyledButtonNextSvg>
               </StyledButtonNext>
-              <StyledButtonRepeat className=" _btn-icon">
-                <StyledButtonRepeatSvg alt="repeat">
-                  <use xlinkHref="img/icon/sprite.svg#icon-repeat"></use>
-                </StyledButtonRepeatSvg>
+              <StyledButtonRepeat className=" _btn-icon" onClick={handleRepeat}>
+              {isRepeat ?  <StyledButtonRepeatSvgActive alt="repeat">
+                  <use xlinkHref= "img/icon/sprite.svg#icon-repeat"></use>
+                </StyledButtonRepeatSvgActive> : <StyledButtonRepeatSvg alt="repeat">
+                  <use xlinkHref= "img/icon/sprite.svg#icon-repeat"></use>
+                </StyledButtonRepeatSvg> } 
               </StyledButtonRepeat>
               <StyledButtonShuffle className=" _btn-icon">
                 <StyledButtonShuffleSvg alt="shuffle">
@@ -142,6 +178,11 @@ export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying }) {
                 <StyledVolumeProgressLine
                   className=" _btn"
                   type="range"
+                  min={0}
+                  max={1}
+                  step={0.01}
+                  value={volume}
+                  onChange={handleVolumeChange}
                   name="range"
                 />
               </StyledVolumeProgress>
