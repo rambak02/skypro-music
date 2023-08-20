@@ -120,11 +120,9 @@ export function AudioPlayer({ currentTrack, isPlaying, setIsPlaying, isRepeat, s
                 </StyledButtonNextSvg>
               </StyledButtonNext>
               <StyledButtonRepeat className=" _btn-icon" onClick={handleRepeat}>
-              {isRepeat ?  <StyledButtonRepeatSvgActive alt="repeat">
-                  <use xlinkHref= "img/icon/sprite.svg#icon-repeat"></use>
-                </StyledButtonRepeatSvgActive> : <StyledButtonRepeatSvg alt="repeat">
-                  <use xlinkHref= "img/icon/sprite.svg#icon-repeat"></use>
-                </StyledButtonRepeatSvg> } 
+               <StyledButtonRepeatSvg alt="repeat">
+                  <use xlinkHref={isRepeat ? "img/icon/sprite.svg#icon-repeat--active" : "img/icon/sprite.svg#icon-repeat" }></use>
+                </StyledButtonRepeatSvg> 
               </StyledButtonRepeat>
               <StyledButtonShuffle className=" _btn-icon">
                 <StyledButtonShuffleSvg alt="shuffle">
