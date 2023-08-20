@@ -29,7 +29,7 @@ import { GlobalStyle } from '../../styled/global'
 
 
 
-export const Main = ({music, getTracksError, loading, setCurrentTrack }) => {
+export const Main = ({music, getTracksError, loading, setCurrentTrack, setIsPlaying }) => {
 
   return (
     <Fragment>
@@ -56,7 +56,7 @@ export const Main = ({music, getTracksError, loading, setCurrentTrack }) => {
 
               {getTracksError ? (<StyledGetTrackError>{getTracksError}</StyledGetTrackError>) : (loading &&
                 music.map((track) => {
-                  return <Tracklist key={track.id} track={track} setCurrentTrack = {setCurrentTrack}/>
+                  return <Tracklist key={track.id} track={track} setCurrentTrack = {setCurrentTrack} setIsPlaying={setIsPlaying}/>
                 })) || <SkeletonCardTracklist />}
             </StyledMainCenterBlock>
             <Sidebar loading={loading} />

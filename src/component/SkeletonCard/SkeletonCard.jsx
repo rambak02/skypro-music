@@ -13,7 +13,6 @@ import {
   StyledBarContent,
   StyledBarPlayer,
   StyledBarPlayerBlock,
-  StyledBarPlayerProgress,
   StyledButtonPrevSvg,
   StyledButtonPrev,
   StyledPlayerControls,
@@ -112,7 +111,6 @@ export function SkeletonCardAudioPlayer() {
     <SkeletonTheme baseColor="#313131" highlightColor="#444">
       <StyledBar>
         <StyledBarContent>
-          <StyledBarPlayerProgress></StyledBarPlayerProgress>
           <StyledBarPlayerBlock>
             <StyledBarPlayer>
               <StyledPlayerControls>

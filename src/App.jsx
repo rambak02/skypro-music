@@ -5,7 +5,9 @@ import { AudioPlayer } from './component/AudioPlayer/AudioPlayer'
 import { musicData } from './constants'
 import { getTracks } from './api'
 
+
 function App() {
+  
   const initialUserState = localStorage.getItem('user') === 'true'
   const [user, setUser] = useState(initialUserState)
   const handleLogin = () => {
@@ -15,18 +17,12 @@ function App() {
   const [music, setMusic] = useState([])
   const [loading, setLoading] = useState(false)
   const [getTracksError, setGetTracksError] = useState(null)
-
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isRepeat, setIsRepeat] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [volume, setVolume] = useState(1);
   useEffect(() => {
-    // 1. Вариант
-    //  getTracks()
-    // .then((tracks) => {
-    //   setMusic(tracks);
-    //   setLoading(true);
-    // })
-    // .catch((error) => {
-    //   setGetTracksError('Не удалось загрузить плейлист, попробуйте позже');
-    //   setLoading(true);
-    // });
+ 
     async function fetchTracks() {
       try {
         const tracks = await getTracks()
@@ -45,12 +41,20 @@ function App() {
     <Fragment>
       <GlobalStyle />
       {currentTrack ?  <AudioPlayer
+      volume={volume}
+      setVolume={setVolume}
+      currentTime= {currentTime}
+      setCurrentTime={setCurrentTime}
+       isRepeat = {isRepeat}
+       setIsRepeat= {setIsRepeat}
           key={currentTrack.id}
           currentTrack = {currentTrack}
+         isPlaying={isPlaying} 
+         setIsPlaying={setIsPlaying}
         /> : null}
        
-    
       <AppRoutes
+       setIsPlaying={setIsPlaying}
        setCurrentTrack ={setCurrentTrack}
         user={user}
         onAuthButtonClick={handleLogin}

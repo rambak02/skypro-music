@@ -14,7 +14,8 @@ export const AppRoutes = ({
   music,
   loading,
   getTracksError,
-setCurrentTrack
+setCurrentTrack,
+setIsPlaying
 }) => {
   return (
     <Routes>
@@ -23,7 +24,7 @@ setCurrentTrack
           path="/"
           element={
             <Main
-          
+            setIsPlaying={setIsPlaying}
               music={music}
               loading={loading}
               getTracksError={getTracksError}
