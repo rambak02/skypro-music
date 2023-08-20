@@ -106,7 +106,7 @@ export function AudioPlayer({
       <StyledBar>
         <StyledBarContent>
           <ProgressBar
-            duration={currentTrack.duration_in_seconds}
+            audioRef={audioRef}
             currentTime={currentTime}
             setCurrentTime={handleProgressBarChange}
           ></ProgressBar>

@@ -43,7 +43,6 @@ function App() {
       {currentTrack ?  <AudioPlayer
       volume={volume}
       setVolume={setVolume}
-      duration = {currentTrack.duration_in_seconds}
       currentTime= {currentTime}
       setCurrentTime={setCurrentTime}
        isRepeat = {isRepeat}
