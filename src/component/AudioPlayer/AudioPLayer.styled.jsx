@@ -1,11 +1,11 @@
 import { styled, css } from 'styled-components'
 
 export const StyledAudio = styled.audio`
-display: none;
+  display: none;
 `
 
 export const StyledBar = styled.div`
-z-index: 99;
+  z-index: 99;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -58,7 +58,7 @@ export const StyledButtonPlaySvg = styled.svg`
     fill: #696969;
   }
   &:active {
-    fill: #D9D9D9;
+    fill: #d9d9d9;
   }
 `
 export const StyledButtonNext = styled.div`
@@ -86,7 +86,7 @@ export const StyledButtonRepeatSvgActive = styled.svg`
   width: 18px;
   height: 12px;
   fill: transparent;
-  stroke: #FFFFFF;
+  stroke: #ffffff;
 `
 
 export const StyledButtonShuffle = styled.div`
@@ -199,7 +199,7 @@ export const StyledVolumeSvg = styled.svg`
   fill: transparent;
 `
 export const StyledVolumeProgress = styled.div`
-display: flex;
+  display: flex;
   width: 109px;
 `
 

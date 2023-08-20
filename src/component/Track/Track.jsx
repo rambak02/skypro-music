@@ -16,7 +16,7 @@ import {
   StyledTrackTimeText,
 } from '../Track/Track.styled.jsx'
 
-function formatDuration(trackTime) {
+export function formatTime(trackTime) {
   const minutes = Math.floor(trackTime / 60);
   const seconds = trackTime % 60;
   const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
@@ -60,7 +60,7 @@ export function Track({ track, setCurrentTrack, setIsPlaying}) {
           <StyledTrackTimeSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
           </StyledTrackTimeSvg>
-          <StyledTrackTimeText>{ formatDuration(track.duration_in_seconds) }</StyledTrackTimeText>
+          <StyledTrackTimeText>{ formatTime(track.duration_in_seconds) }</StyledTrackTimeText>
         </div>
       </StyledPlaylistTrack>
     </StyledPlaylistItem>

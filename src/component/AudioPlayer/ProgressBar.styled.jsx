@@ -1,8 +1,13 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components'
 
+export const StyledProgressTime = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgb(0 0 0 / 0%);
+`
 export const StyledProgressInput = styled.input`
   --progress-height: 8px;
-  --progress-color: ${(props) => props.$color ?? "#b672ff"};
+  --progress-color: ${(props) => props.$color ?? '#b672ff'};
   --progress-bg-color: #2e2e2e;
 
   margin: 0;
@@ -52,4 +57,4 @@ export const StyledProgressInput = styled.input`
     background-color: var(--progress-color);
     height: var(--progress-height);
   }
-`;
+`

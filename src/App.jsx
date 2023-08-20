@@ -5,7 +5,9 @@ import { AudioPlayer } from './component/AudioPlayer/AudioPlayer'
 import { musicData } from './constants'
 import { getTracks } from './api'
 
+
 function App() {
+  
   const initialUserState = localStorage.getItem('user') === 'true'
   const [user, setUser] = useState(initialUserState)
   const handleLogin = () => {
@@ -52,7 +54,6 @@ function App() {
          setIsPlaying={setIsPlaying}
         /> : null}
        
-    
       <AppRoutes
        setIsPlaying={setIsPlaying}
        setCurrentTrack ={setCurrentTrack}
