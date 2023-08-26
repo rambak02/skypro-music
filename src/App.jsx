@@ -21,6 +21,11 @@ function App() {
   const [isRepeat, setIsRepeat] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(1);
+  const [error, setError] = useState(null)
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
   useEffect(() => {
  
     async function fetchTracks() {
@@ -54,6 +59,14 @@ function App() {
         /> : null}
        
       <AppRoutes
+      error = {error}
+      setError = {setError}
+      email = {email}
+      setEmail= {setEmail}
+      password = {password}
+      setPassword = {setPassword}
+      repeatPassword = {repeatPassword}
+      setRepeatPassword= {setRepeatPassword}
        setIsPlaying={setIsPlaying}
        setCurrentTrack ={setCurrentTrack}
         user={user}

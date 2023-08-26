@@ -1,19 +1,52 @@
 import { Link } from 'react-router-dom'
-import * as S from './LoginPage.styled'
+import * as S from './AuthPage.styled'
 import { useEffect, useState } from 'react'
+import { authUser } from '../../api'
 
-export default function LoginPage({ isLoginMode = false, error, setError, email, setEmail, password, setPassword, repeatPassword, setRepeatPassword  }) {
+
+
+
+export default function AuthPage({
+  isLoginMode = false,
+  error,
+  setError,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  repeatPassword,
+  setRepeatPassword,
+}) {
+const [primaryButton, setPrimaryButton] = useState(false)
+
   const handleLogin = async ({ email, password }) => {
     alert(`Выполняется вход: ${email} ${password}`)
     setError('Неизвестная ошибка входа')
   }
 
   const handleRegister = async () => {
-    alert(`Выполняется регистрация: ${email} ${password}`)
-    setError('Неизвестная ошибка регистрации')
-  }
-
-  // Сбрасываем ошибку если пользователь меняет данные на форме или меняется режим формы
+    setPrimaryButton(true)
+    if (email === '' && password === '') {
+     
+      setError('Укажите email и пароль');
+    } else if (email === '') {
+      setError('Укажите email');
+    } else if (password === '') {
+      setError('Укажите пароль');
+    } else if (password !== repeatPassword) {
+      setError('Пароли не совпадают');
+    } else {
+      try {
+        
+        const response = await authUser(email, password);
+        console.log('Пользователь успешно зарегистрирован:', response);
+      } catch (error) {
+        setError(error.message); 
+      }
+     
+    }
+    setPrimaryButton(false)
+  };
   useEffect(() => {
     setError(null)
   }, [isLoginMode, email, password, repeatPassword])
@@ -23,10 +56,7 @@ export default function LoginPage({ isLoginMode = false, error, setError, email,
       <S.ModalForm>
         <Link to="/login">
           <S.ModalLogo>
-            <S.ModalLogoImage
-              src="/img/logo-black.png"
-              alt="logo"
-            />
+            <S.ModalLogoImage src="/img/logo-black.png" alt="logo" />
           </S.ModalLogo>
         </Link>
         {isLoginMode ? (
@@ -57,7 +87,7 @@ export default function LoginPage({ isLoginMode = false, error, setError, email,
                 Войти
               </S.PrimaryButton>
               <Link to="/register">
-                <S.SecondaryButton>Зарегистрироваться</S.SecondaryButton>
+                <S.SecondaryButton > </S.SecondaryButton>
               </Link>
             </S.Buttons>
           </>
@@ -94,9 +124,8 @@ export default function LoginPage({ isLoginMode = false, error, setError, email,
             </S.Inputs>
             {error && <S.Error>{error}</S.Error>}
             <S.Buttons>
-              <S.PrimaryButton onClick={handleRegister}>
-                Зарегистрироваться
-              </S.PrimaryButton>
+              {primaryButton ? <S.PrimaryButton>Загрузка...</S.PrimaryButton> : <S.PrimaryButton disable={primaryButton} onClick={handleRegister}>Зарегистрироваться</S.PrimaryButton>}
+              
             </S.Buttons>
           </>
         )}

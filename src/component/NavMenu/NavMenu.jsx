@@ -38,7 +38,7 @@ export function NavMenu() {
               </Link>
             </StyledMenuItem>
             <StyledMenuItem>
-              <Link to="/login">
+              <Link to="/auth">
                 <StyledMenuLink href="http://">Выйти</StyledMenuLink>
               </Link>
             </StyledMenuItem>
