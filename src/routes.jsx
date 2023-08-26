@@ -3,10 +3,10 @@ import { Favorites } from './pages/favorites'
 import { Main } from './pages/main/MainPage'
 import { NotFound } from './pages/not-found'
 import { Category } from './pages/category'
-import { Login } from './pages/login/LoginPage'
-import { Register } from './pages/register'
+import AuthPage from './pages/auth/AuthPage'
 
 import { ProtectedRoute } from './component/ProtectedRoute/ProtectedRoute'
+import LoginPage from './pages/login/LoginPage'
 
 export const AppRoutes = ({
   user,
@@ -14,8 +14,16 @@ export const AppRoutes = ({
   music,
   loading,
   getTracksError,
-setCurrentTrack,
-setIsPlaying
+  setCurrentTrack,
+  setIsPlaying,
+  error,
+  setError,
+  email,
+  setEmail,
+  password,
+  setPassword,
+  repeatPassword,
+  setRepeatPassword,
 }) => {
   return (
     <Routes>
@@ -24,11 +32,11 @@ setIsPlaying
           path="/"
           element={
             <Main
-            setIsPlaying={setIsPlaying}
+              setIsPlaying={setIsPlaying}
               music={music}
               loading={loading}
               getTracksError={getTracksError}
-             setCurrentTrack={setCurrentTrack}
+              setCurrentTrack={setCurrentTrack}
             />
           }
         />
@@ -38,9 +46,34 @@ setIsPlaying
 
       <Route
         path="/login"
-        element={<Login onAuthButtonClick={onAuthButtonClick} />}
+        element={
+          <LoginPage
+            onAuthButtonClick={onAuthButtonClick}
+            error={error}
+            setError={setError}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            repeatPassword={repeatPassword}
+          />
+        }
       />
-      <Route path="/register" element={<Register />} />
+      <Route
+        path="/auth"
+        element={
+          <AuthPage
+            error={error}
+            setError={setError}
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            repeatPassword={repeatPassword}
+            setRepeatPassword={setRepeatPassword}
+          />
+        }
+      />
 
       <Route path="*" element={<NotFound />} />
     </Routes>
