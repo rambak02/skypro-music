@@ -21,8 +21,8 @@ function App() {
   const [isRepeat, setIsRepeat] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(1);
-  const [error, setError] = useState(null)
-
+  const [error, setError] = useState(null);
+  const [primaryButton, setPrimaryButton] = useState(false)
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [repeatPassword, setRepeatPassword] = useState('')
@@ -59,6 +59,8 @@ function App() {
         /> : null}
        
       <AppRoutes
+      primaryButton={primaryButton}
+      setPrimaryButton={setPrimaryButton}
       error = {error}
       setError = {setError}
       email = {email}

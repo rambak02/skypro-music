@@ -24,6 +24,8 @@ export const AppRoutes = ({
   setPassword,
   repeatPassword,
   setRepeatPassword,
+  primaryButton, 
+  setPrimaryButton
 }) => {
   return (
     <Routes>
@@ -48,6 +50,8 @@ export const AppRoutes = ({
         path="/login"
         element={
           <LoginPage
+          primaryButton={primaryButton}
+          setPrimaryButton={setPrimaryButton}
             onAuthButtonClick={onAuthButtonClick}
             error={error}
             setError={setError}
@@ -63,6 +67,8 @@ export const AppRoutes = ({
         path="/auth"
         element={
           <AuthPage
+          primaryButton={primaryButton}
+          setPrimaryButton={setPrimaryButton}
             error={error}
             setError={setError}
             email={email}
