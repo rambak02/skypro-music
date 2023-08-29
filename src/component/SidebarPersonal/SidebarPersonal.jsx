@@ -1,13 +1,17 @@
 import {
   StyledSidebarAvatar,
   StyledSidebarPersonal,
-  StyledSidebarPersonalName,
+  StyledSidebarUsername,
 } from './SidebarPersonal.styled'
+import { UserContext } from '../../contexts/Context'
 
-export function SidebarPersonal({ personalName }) {
+export function SidebarPersonal() {
   return (
     <StyledSidebarPersonal>
-      <StyledSidebarPersonalName>{personalName}</StyledSidebarPersonalName>
+      <UserContext.Consumer>
+        {(user) =><StyledSidebarUsername>{user}</StyledSidebarUsername> }
+      
+      </UserContext.Consumer>
       <StyledSidebarAvatar></StyledSidebarAvatar>
     </StyledSidebarPersonal>
   )

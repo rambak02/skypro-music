@@ -64,7 +64,7 @@ export function loginUser(email, password) {
         })
       } else if (response.status === 401) {
         return response.json().then((errorResponse) => {
-          throw new Error(errorResponse.details)
+          throw new Error(errorResponse.detail)
         })
       } else if (response.status === 200) {
         return response.json()

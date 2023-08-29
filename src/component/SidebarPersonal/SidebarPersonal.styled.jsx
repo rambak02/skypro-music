@@ -7,7 +7,7 @@ export const StyledSidebarPersonal = styled.div`
   justify-content: flex-end;
   padding: 12px 0 15px 0;
 `
-export const StyledSidebarPersonalName = styled.p`
+export const StyledSidebarUsername = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 16px;

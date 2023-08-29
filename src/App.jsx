@@ -4,15 +4,68 @@ import { GlobalStyle } from './styled/global'
 import { AudioPlayer } from './component/AudioPlayer/AudioPlayer'
 import { musicData } from './constants'
 import { getTracks } from './api'
+import { useNavigate } from 'react-router-dom'
+import { loginUser } from './api'
+import { authUser } from './api'
+import { UserContext } from './contexts/Context'
+
 
 
 function App() {
-  
-  const initialUserState = localStorage.getItem('user') === 'true'
+  const navigate = useNavigate()
+  const initialUserState = localStorage.getItem('user') == true
   const [user, setUser] = useState(initialUserState)
-  const handleLogin = () => {
-    localStorage.setItem('user', 'true')
-    setUser(true)
+  const handleLogout = async () => {
+    localStorage.setItem("user", false )
+    setUser(false)
+    navigate('/login', { replace: true })
+    
+  }
+  const handleLogin = async () => {
+    setPrimaryButton(true)
+    if (email === '' && password === '') {
+      setError('Укажите email и пароль')
+    } else if (email === '') {
+      setError('Укажите email')
+    } else if (password === '') {
+      setError('Укажите пароль')
+    } else {
+      try {
+        const response = await loginUser(email, password)
+        console.log('Пользователь успешно зашел:', response)
+        navigate('/', { replace: true })
+        setUser(true)
+        localStorage.setItem("user", email )
+        
+        
+      } catch (error) {
+        setError(error.message)
+      }
+    }
+    setPrimaryButton(false)
+  }
+  const handleRegister = async () => {
+    setPrimaryButton(true)
+    if (email === '' && password === '') {
+      setError('Укажите email и пароль')
+    } else if (email === '') {
+      setError('Укажите email')
+    } else if (password === '') {
+      setError('Укажите пароль')
+    } else if (password !== repeatPassword) {
+      setError('Пароли не совпадают')
+    } else {
+      try {
+        const response = await authUser(email, password)
+        console.log('Пользователь успешно зарегистрирован:', response)
+        navigate('/login', { replace: true })
+        localStorage.setItem("user", email )
+        setUser(email)
+      } catch (error) {
+        setError(error.message)
+      }
+    }
+    setPrimaryButton(false)
   }
   const [music, setMusic] = useState([])
   const [loading, setLoading] = useState(false)
@@ -57,10 +110,9 @@ function App() {
          isPlaying={isPlaying} 
          setIsPlaying={setIsPlaying}
         /> : null}
-       
+       <UserContext.Provider value={localStorage.getItem("user")}>
       <AppRoutes
       primaryButton={primaryButton}
-      setPrimaryButton={setPrimaryButton}
       error = {error}
       setError = {setError}
       email = {email}
@@ -72,12 +124,15 @@ function App() {
        setIsPlaying={setIsPlaying}
        setCurrentTrack ={setCurrentTrack}
         user={user}
-        onAuthButtonClick={handleLogin}
+        onLogoutButtonClick ={handleLogout}
+        onAuthButtonClick={handleRegister}
+        onLoginButtonClick={handleLogin}
         music={music}
         musicData={musicData}
         loading={loading}
         getTracksError={getTracksError}
       />
+      </UserContext.Provider>
     </Fragment>
   )
 }

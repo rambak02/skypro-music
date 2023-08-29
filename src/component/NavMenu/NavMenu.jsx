@@ -12,7 +12,7 @@ import {
 } from './NavMenu.styled'
 import { Link } from 'react-router-dom'
 
-export function NavMenu() {
+export function NavMenu({onLogoutButtonClick}) {
   const [visible, setVisible] = useState(false)
 
   const toggleVisibility = () => setVisible(!visible)
@@ -38,8 +38,8 @@ export function NavMenu() {
               </Link>
             </StyledMenuItem>
             <StyledMenuItem>
-              <Link to="/auth">
-                <StyledMenuLink href="http://">Выйти</StyledMenuLink>
+              <Link to="/login">
+                <StyledMenuLink onClick={onLogoutButtonClick} >Выйти</StyledMenuLink>
               </Link>
             </StyledMenuItem>
           </StyledMenuList>

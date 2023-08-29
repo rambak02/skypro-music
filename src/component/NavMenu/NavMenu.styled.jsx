@@ -55,7 +55,7 @@ export const StyledMenuItem = styled.li`
   padding: 5px 0;
   margin-bottom: 16px;
 `
-export const StyledMenuLink = styled.a`
+export const StyledMenuLink = styled.div`
   color: #ffffff;
   font-weight: 400;
   font-size: 16px;

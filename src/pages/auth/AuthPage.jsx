@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 import * as S from './AuthPage.styled'
 import { useEffect, useState } from 'react'
-import { authUser } from '../../api'
+
 import { useNavigate } from 'react-router-dom'
-import LoginPage from '../login/LoginPage'
+
 
 export default function AuthPage({
   error,
@@ -15,35 +15,14 @@ export default function AuthPage({
   repeatPassword,
   setRepeatPassword,
   primaryButton,
-  setPrimaryButton,
+  onAuthButtonClick
 }) {
-  const [isLoginMode, setIsLoginMode] = useState(false)
   const navigate = useNavigate()
 
-  const handleRegister = async () => {
-    setPrimaryButton(true)
-    if (email === '' && password === '') {
-      setError('Укажите email и пароль')
-    } else if (email === '') {
-      setError('Укажите email')
-    } else if (password === '') {
-      setError('Укажите пароль')
-    } else if (password !== repeatPassword) {
-      setError('Пароли не совпадают')
-    } else {
-      try {
-        const response = await authUser(email, password)
-        console.log('Пользователь успешно зарегистрирован:', response)
-        navigate('/login', { replace: true })
-      } catch (error) {
-        setError(error.message)
-      }
-    }
-    setPrimaryButton(false)
-  }
+ 
   useEffect(() => {
     setError(null)
-  }, [isLoginMode, email, password, repeatPassword])
+  }, [ email, password, repeatPassword])
 
   return (
     <S.PageContainer>
@@ -88,7 +67,7 @@ export default function AuthPage({
             {primaryButton ? (
               <S.PrimaryButton>Загрузка...</S.PrimaryButton>
             ) : (
-              <S.PrimaryButton disable={primaryButton} onClick={handleRegister}>
+              <S.PrimaryButton disable={primaryButton} onClick={onAuthButtonClick}>
                 Зарегистрироваться
               </S.PrimaryButton>
             )}
