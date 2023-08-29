@@ -9,7 +9,6 @@ import { ProtectedRoute } from './component/ProtectedRoute/ProtectedRoute'
 import LoginPage from './pages/login/LoginPage'
 
 export const AppRoutes = ({
-  onLoginButtonClick,
   user,
   onAuthButtonClick,
   music,
@@ -26,7 +25,6 @@ export const AppRoutes = ({
   repeatPassword,
   setRepeatPassword,
   primaryButton, 
-  onLogoutButtonClick
 }) => {
   return (
     <Routes>
@@ -40,7 +38,6 @@ export const AppRoutes = ({
               loading={loading}
               getTracksError={getTracksError}
               setCurrentTrack={setCurrentTrack}
-              onLogoutButtonClick ={onLogoutButtonClick}
             />
           }
         />
@@ -53,7 +50,6 @@ export const AppRoutes = ({
         element={
           <LoginPage
           primaryButton={primaryButton}
-            onLoginButtonClick={onLoginButtonClick}
             error={error}
             setError={setError}
             email={email}

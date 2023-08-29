@@ -9,7 +9,7 @@ export function SidebarPersonal() {
   return (
     <StyledSidebarPersonal>
       <UserContext.Consumer>
-        {(user) =><StyledSidebarUsername>{user}</StyledSidebarUsername> }
+        {(context) =><StyledSidebarUsername>{context.user}</StyledSidebarUsername> }
       
       </UserContext.Consumer>
       <StyledSidebarAvatar></StyledSidebarAvatar>

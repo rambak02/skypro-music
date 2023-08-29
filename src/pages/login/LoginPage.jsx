@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import * as S from './LoginPage.styled'
 import { useEffect} from 'react'
-
+import { UserContext } from '../../contexts/Context'
 
 export default function LoginPage({
   error,
@@ -50,9 +50,12 @@ export default function LoginPage({
           {primaryButton ? (
             <S.PrimaryButton>Загрузка...</S.PrimaryButton>
           ) : (
-            <S.PrimaryButton disable="{primaryButton}" onClick={onLoginButtonClick}>
+            <UserContext.Consumer>
+            {(context)=> <S.PrimaryButton disable="{primaryButton}" onClick={context.handleLogin}>
+            {/* {(user) =><StyledSidebarUsername>{user}</StyledSidebarUsername> } */}
               Войти
-            </S.PrimaryButton>
+            </S.PrimaryButton>}
+            </UserContext.Consumer>
           )}
           <Link to="/auth">
             <S.SecondaryButton>Зарегистрироваться</S.SecondaryButton>
