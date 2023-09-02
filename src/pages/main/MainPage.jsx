@@ -1,15 +1,11 @@
 import React, { Fragment } from 'react'
 
-import { AudioPlayer } from '../../component/AudioPlayer/AudioPlayer'
 import { NavMenu } from '../../component/NavMenu/NavMenu'
 import { Search } from '../../component/Search/Search'
 import { Sidebar } from '../../component/Sidebar/Sidebar'
 import { Tracklist } from '../../component/Tracklist/Tracklist'
-import { musicData } from '../../constants'
 
-import SkeletonCardTracklist, {
-  SkeletonCardAudioPlayer,
-} from '../../component/SkeletonCard/SkeletonCard'
+import SkeletonCardTracklist from '../../component/SkeletonCard/SkeletonCard'
 import { Dropdown } from '../../component/Dropdown/Dropdown'
 import {
   StyledMainCenterBlock,
@@ -29,7 +25,7 @@ import { GlobalStyle } from '../../styled/global'
 
 
 
-export const Main = ({music, getTracksError, loading, setCurrentTrack, setIsPlaying }) => {
+export const Main = ({music, getTracksError, loading, setCurrentTrack, setIsPlaying, onLogoutButtonClick }) => {
 
   return (
     <Fragment>
@@ -38,7 +34,7 @@ export const Main = ({music, getTracksError, loading, setCurrentTrack, setIsPlay
       <StyledWrapper>
         <StyledContainer>
           <StyledMain>
-            <NavMenu />
+            <NavMenu   onLogoutButtonClick ={onLogoutButtonClick}/>
             <StyledMainCenterBlock>
               <Search />
               <StyledCenterBlockH2>Треки</StyledCenterBlockH2>

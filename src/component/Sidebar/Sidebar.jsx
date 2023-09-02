@@ -11,7 +11,7 @@ import {
 export function Sidebar({ loading }) {
   return (
     <StyledMainSidebar>
-      <SidebarPersonal personalName="Sergey.Ivanov" />
+      <SidebarPersonal />
       <StyledSidebarBlock>
         <StyledSidebarList>
           {(loading &&

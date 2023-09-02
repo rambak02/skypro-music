@@ -11,8 +11,9 @@ import {
   StyledNavMenu,
 } from './NavMenu.styled'
 import { Link } from 'react-router-dom'
+import { UserContext } from '../../contexts/Context'
 
-export function NavMenu() {
+export function NavMenu({onLogoutButtonClick}) {
   const [visible, setVisible] = useState(false)
 
   const toggleVisibility = () => setVisible(!visible)
@@ -38,8 +39,10 @@ export function NavMenu() {
               </Link>
             </StyledMenuItem>
             <StyledMenuItem>
-              <Link to="/auth">
-                <StyledMenuLink href="http://">Выйти</StyledMenuLink>
+              <Link to="/login">
+                <UserContext.Consumer>
+               {(context)=> <StyledMenuLink onClick={context.handleLogout} >Выйти</StyledMenuLink>}
+                </UserContext.Consumer>
               </Link>
             </StyledMenuItem>
           </StyledMenuList>
