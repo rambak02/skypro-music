@@ -9,7 +9,7 @@ import { ProtectedRoute } from './component/ProtectedRoute/ProtectedRoute'
 import LoginPage from './pages/login/LoginPage'
 
 export const AppRoutes = ({
-  user,
+  localUser,
   onAuthButtonClick,
   music,
   loading,
@@ -28,7 +28,7 @@ export const AppRoutes = ({
 }) => {
   return (
     <Routes>
-      <Route element={<ProtectedRoute isAllowed={user} />}>
+      <Route element={<ProtectedRoute isAllowed={localUser} />}>
         <Route
           path="/"
           element={

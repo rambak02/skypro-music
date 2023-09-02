@@ -11,11 +11,8 @@ import { UserContext } from './contexts/Context'
 
 function App() {
   const navigate = useNavigate()
-  const initialUserState = localStorage.getItem('user') == true
-  const [user, setUser] = useState(initialUserState)
   const handleLogout = async () => {
     localStorage.setItem('user', false)
-    setUser(false)
     navigate('/login', { replace: true })
   }
   const handleLogin = async () => {
@@ -31,7 +28,6 @@ function App() {
         const response = await loginUser(email, password)
         console.log('Пользователь успешно зашел:', response)
         navigate('/', { replace: true })
-        setUser(true)
         localStorage.setItem('user', email)
       } catch (error) {
         setError(error.message)
@@ -55,7 +51,6 @@ function App() {
         console.log('Пользователь успешно зарегистрирован:', response)
         navigate('/login', { replace: true })
         localStorage.setItem('user', email)
-        setUser(email)
       } catch (error) {
         setError(error.message)
       }
@@ -109,6 +104,7 @@ function App() {
       ) : null}
       <UserContext.Provider value={{localUser, handleLogin, handleLogout}}>
         <AppRoutes
+        localUser={localUser}
           primaryButton={primaryButton}
           error={error}
           setError={setError}
@@ -120,7 +116,6 @@ function App() {
           setRepeatPassword={setRepeatPassword}
           setIsPlaying={setIsPlaying}
           setCurrentTrack={setCurrentTrack}
-          user={user}
           onAuthButtonClick={handleRegister}
           music={music}
           musicData={musicData}

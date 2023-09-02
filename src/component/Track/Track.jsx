@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { setCurTrack } from "../../store/actions/creators/track";
 import {
   StyledPlaylistItem,
   StyledPlaylistTrack,
@@ -15,15 +17,17 @@ import {
   StyledTrackTimeSvg,
   StyledTrackTimeText,
 } from '../Track/Track.styled.jsx'
-
 export function formatTime(trackTime) {
   const minutes = Math.floor(trackTime / 60);
   const seconds = trackTime % 60;
   const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
   return minutes + ' : ' + formattedSeconds;
 }
+
 export function Track({ track, setCurrentTrack, setIsPlaying}) {
+  const dispatch = useDispatch();
   const handleTrackClick = () => {
+    dispatch(setCurTrack(track));
     setCurrentTrack(track);
     setIsPlaying(true);
   
