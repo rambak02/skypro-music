@@ -1,5 +1,5 @@
-import { useDispatch } from "react-redux";
-import { setCurTrack } from "../../store/actions/creators/track";
+import { useDispatch } from 'react-redux'
+import { setCurTrack } from '../../store/actions/creators/track'
 import {
   StyledPlaylistItem,
   StyledPlaylistTrack,
@@ -17,29 +17,35 @@ import {
   StyledTrackTimeSvg,
   StyledTrackTimeText,
 } from '../Track/Track.styled.jsx'
+import { useEffect } from 'react'
 export function formatTime(trackTime) {
-  const minutes = Math.floor(trackTime / 60);
-  const seconds = trackTime % 60;
-  const formattedSeconds = seconds < 10 ? '0' + seconds : seconds;
-  return minutes + ' : ' + formattedSeconds;
+  const minutes = Math.floor(trackTime / 60)
+  const seconds = trackTime % 60
+  const formattedSeconds = seconds < 10 ? '0' + seconds : seconds
+  return minutes + ' : ' + formattedSeconds
 }
 
-export function Track({ track, setCurrentTrack, setIsPlaying}) {
-  const dispatch = useDispatch();
+export function Track({ track, setCurrentTrack, setIsPlaying, isPlaying, currentTrack }) {
+  const dispatch = useDispatch()
   const handleTrackClick = () => {
-    dispatch(setCurTrack(track));
-    setCurrentTrack(track);
-    setIsPlaying(true);
-  
-  };
+    dispatch(setCurTrack(track))
+    if (currentTrack && currentTrack.id === track.id) {
+      setIsPlaying(!isPlaying);
+    } else {
+      setCurrentTrack(track);
+      setIsPlaying(true);
+    }
+  }
+  useEffect(() => {
+    setIsPlaying(isPlaying)
+  }, [isPlaying])
   return (
-    <StyledPlaylistItem onClick={handleTrackClick
-     }  >
-      <StyledPlaylistTrack >
+    <StyledPlaylistItem onClick={handleTrackClick}>
+      <StyledPlaylistTrack>
         <StyledTrackTitles>
           <StyledTrackTitleImage>
-            <StyledTrackTitleSvg alt="music">
-              <use xlinkHref="img/icon/sprite.svg#icon-note"></use>
+            <StyledTrackTitleSvg alt="music" $isPlaying={currentTrack && (currentTrack.id === track.id) && isPlaying}>
+              <use xlinkHref={currentTrack && currentTrack.id === track.id ? "img/icon/sprite.svg#icon-circle" : "img/icon/sprite.svg#icon-note"}></use>
             </StyledTrackTitleSvg>
           </StyledTrackTitleImage>
           <div>
@@ -64,7 +70,9 @@ export function Track({ track, setCurrentTrack, setIsPlaying}) {
           <StyledTrackTimeSvg alt="time">
             <use xlinkHref="img/icon/sprite.svg#icon-like"></use>
           </StyledTrackTimeSvg>
-          <StyledTrackTimeText>{ formatTime(track.duration_in_seconds) }</StyledTrackTimeText>
+          <StyledTrackTimeText>
+            {formatTime(track.duration_in_seconds)}
+          </StyledTrackTimeText>
         </div>
       </StyledPlaylistTrack>
     </StyledPlaylistItem>

@@ -15,6 +15,7 @@ export const AppRoutes = ({
   loading,
   getTracksError,
   setCurrentTrack,
+  isPlaying,
   setIsPlaying,
   error,
   setError,
@@ -25,6 +26,7 @@ export const AppRoutes = ({
   repeatPassword,
   setRepeatPassword,
   primaryButton, 
+  currentTrack
 }) => {
   return (
     <Routes>
@@ -33,6 +35,8 @@ export const AppRoutes = ({
           path="/"
           element={
             <Main
+            currentTrack={currentTrack}
+            isPlaying={isPlaying}
               setIsPlaying={setIsPlaying}
               music={music}
               loading={loading}

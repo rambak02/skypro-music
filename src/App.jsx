@@ -104,6 +104,7 @@ function App() {
       ) : null}
       <UserContext.Provider value={{localUser, handleLogin, handleLogout}}>
         <AppRoutes
+        isPlaying={isPlaying}
         localUser={localUser}
           primaryButton={primaryButton}
           error={error}
@@ -116,6 +117,7 @@ function App() {
           setRepeatPassword={setRepeatPassword}
           setIsPlaying={setIsPlaying}
           setCurrentTrack={setCurrentTrack}
+          currentTrack={currentTrack}
           onAuthButtonClick={handleRegister}
           music={music}
           musicData={musicData}
