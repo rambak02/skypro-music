@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import ProgressBar from './ProgressBar'
+import { nextTrack, prevTrack } from '../../store/actions/creators/track'
 import {
   StyledBar,
   StyledBarContent,
@@ -37,6 +38,7 @@ import {
   StyledVolumeSvg,
   StyledAudio,
 } from './AudioPLayer.styled'
+import { useDispatch } from 'react-redux'
 
 export function AudioPlayer({
   music,
@@ -51,6 +53,7 @@ export function AudioPlayer({
   volume,
   setVolume,
 }) {
+  const dispatch = useDispatch()
   const audioRef = useRef(null)
 
   const handleStart = () => {
@@ -93,24 +96,34 @@ export function AudioPlayer({
     audioRef.current.loop = !isRepeat
     setIsRepeat(!isRepeat)
   }
- const handleNextTrack = () => {
-  const currentId = music.findIndex(track => track.id === currentTrack.id);
-  const nextId = currentId + 1;
-  const nextTrack = music[nextId];
-  if (nextTrack) {
-    setCurrentTrack(nextTrack)
-    handleStart
+  const handleNextTrack = () => {
+    const currentId = music.findIndex((track) => track.id === currentTrack.id)
+    const nextId = currentId + 1
+    let nextMusic = music[nextId]
+    if (nextMusic) {
+      setCurrentTrack(nextMusic)
+      dispatch(nextTrack(nextMusic))
+      handleStart
+      setIsPlaying(true)
+    } else {
+      nextTrack = music[0]
+      setCurrentTrack(nextMusic)
+      dispatch(nextTrack(nextMusic))
+      handleStart
+      setIsPlaying(true)
+    }
   }
- }
- const handlePrevTrack = () => {
-  const currentId = music.findIndex(track => track.id === currentTrack.id);
-  const prevId = currentId - 1;
-  const prevTrack = music[prevId];
-  if (prevTrack) {
-    setCurrentTrack(prevTrack)
-    handleStart
+  const handlePrevTrack = () => {
+    const currentId = music.findIndex((track) => track.id === currentTrack.id)
+    const prevId = currentId - 1
+    let prevMusic = music[prevId]
+    if (prevMusic) {
+      setCurrentTrack(prevMusic)
+      dispatch(prevTrack(prevMusic))
+      handleStart
+      setIsPlaying(true)
+    } 
   }
- }
   const togglePlay = isPlaying ? handleStop : handleStart
   useEffect(() => {
     if (audioRef.current) {

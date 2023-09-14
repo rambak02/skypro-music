@@ -10,13 +10,13 @@ export const setCurTrack = (track) => ({
 export const nextTrack = (track) => ({
     type: NEXT_TRACK,
     payload: {
-       id: track.id
+    track
     }
 })
-export const PrevTrack = (track) => ({
+export const prevTrack = (track) => ({
     type: PREV_TRACK,
     payload: {
-        id: track.id
+        track
     }
 })
 export const toggleShuffled = (track) => ({

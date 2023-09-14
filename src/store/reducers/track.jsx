@@ -24,15 +24,20 @@ export default function trackReducer(state = initialState, action) {
     }
 
     case NEXT_TRACK: {
-      const { id } = action.payload
+      const { track } = action.payload
       return {
         ...state,
-        [id]: {
-         
-        },
-      }
+        currentTrack: track,
+        currentTrackId: track.id, 
+      };
     }
     case PREV_TRACK: {
+      const { track } = action.payload
+      return {
+        ...state,
+        currentTrack: track,
+        currentTrackId: track.id, 
+      };
     }
     case TOGGLE_SHUFFLED: {
     }
