@@ -15,7 +15,6 @@ import {
   StyledButtonPrevSvg,
   StyledButtonRepeat,
   StyledButtonRepeatSvg,
-  StyledButtonRepeatSvgActive,
   StyledButtonShuffle,
   StyledButtonShuffleSvg,
   StyledPlayTrack,
@@ -40,6 +39,8 @@ import {
 } from './AudioPLayer.styled'
 
 export function AudioPlayer({
+  music,
+  setCurrentTrack,
   currentTrack,
   isPlaying,
   setIsPlaying,
@@ -92,6 +93,24 @@ export function AudioPlayer({
     audioRef.current.loop = !isRepeat
     setIsRepeat(!isRepeat)
   }
+ const handleNextTrack = () => {
+  const currentId = music.findIndex(track => track.id === currentTrack.id);
+  const nextId = currentId + 1;
+  const nextTrack = music[nextId];
+  if (nextTrack) {
+    setCurrentTrack(nextTrack)
+    handleStart
+  }
+ }
+ const handlePrevTrack = () => {
+  const currentId = music.findIndex(track => track.id === currentTrack.id);
+  const prevId = currentId - 1;
+  const prevTrack = music[prevId];
+  if (prevTrack) {
+    setCurrentTrack(prevTrack)
+    handleStart
+  }
+ }
   const togglePlay = isPlaying ? handleStop : handleStart
   useEffect(() => {
     if (audioRef.current) {
@@ -113,7 +132,7 @@ export function AudioPlayer({
           <StyledBarPlayerBlock>
             <StyledBarPlayer>
               <StyledPlayerControls>
-                <StyledButtonPrev>
+                <StyledButtonPrev onClick={handlePrevTrack}>
                   <StyledButtonPrevSvg alt="prev">
                     <use xlinkHref="img/icon/sprite.svg#icon-prev"></use>
                   </StyledButtonPrevSvg>
@@ -129,7 +148,7 @@ export function AudioPlayer({
                     ></use>
                   </StyledButtonPlaySvg>
                 </StyledButtonPlay>
-                <StyledButtonNext>
+                <StyledButtonNext onClick={handleNextTrack}>
                   <StyledButtonNextSvg alt="next">
                     <use xlinkHref="img/icon/sprite.svg#icon-next"></use>
                   </StyledButtonNextSvg>

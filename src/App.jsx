@@ -90,6 +90,8 @@ function App() {
       <GlobalStyle />
       {currentTrack ? (
         <AudioPlayer
+          music ={music}
+          setCurrentTrack={setCurrentTrack}
           volume={volume}
           setVolume={setVolume}
           currentTime={currentTime}

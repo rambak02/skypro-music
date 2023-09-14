@@ -18,7 +18,7 @@ export default function trackReducer(state = initialState, action) {
       return {
         ...state,
         currentTrack: track,
-        currentTrackIndex: track.id,
+        currentTrackId: track.id,
         playing: true, 
       };
     }
