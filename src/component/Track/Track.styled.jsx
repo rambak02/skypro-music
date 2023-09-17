@@ -1,4 +1,24 @@
-import { styled } from 'styled-components'
+import { styled, keyframes, css } from 'styled-components'
+const pulseAnimation = keyframes`
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+`
+
+const pulsatingStyles = css`
+  animation: ${pulseAnimation} 1s infinite;
+  fill: #B672FF;
+`
+
 export const StyledTrackTitles = styled.div`
   display: flex;
   flex-direction: row;
@@ -20,6 +40,7 @@ export const StyledTrackTitleSvg = styled.svg`
   height: 17px;
   fill: transparent;
   stroke: #4e4e4e;
+  ${(props) => props.$isPlaying && pulsatingStyles};
 `
 export const StyledTrackTitleLink = styled.a`
   font-style: normal;

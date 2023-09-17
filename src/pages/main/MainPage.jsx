@@ -20,13 +20,19 @@ import {
   StyledPlaylistTitleSvg,
   StyledMain,
 } from '../../styled/styled'
-import {StyledGetTrackError} from "./MainPage.styled"
+import { StyledGetTrackError } from './MainPage.styled'
 import { GlobalStyle } from '../../styled/global'
 
-
-
-export const Main = ({music, getTracksError, loading, setCurrentTrack, setIsPlaying, onLogoutButtonClick }) => {
-
+export const Main = ({
+  music,
+  getTracksError,
+  loading,
+  setCurrentTrack,
+  setIsPlaying,
+  onLogoutButtonClick,
+  isPlaying,
+  currentTrack,
+}) => {
   return (
     <Fragment>
       <GlobalStyle />
@@ -34,7 +40,7 @@ export const Main = ({music, getTracksError, loading, setCurrentTrack, setIsPlay
       <StyledWrapper>
         <StyledContainer>
           <StyledMain>
-            <NavMenu   onLogoutButtonClick ={onLogoutButtonClick}/>
+            <NavMenu onLogoutButtonClick={onLogoutButtonClick} />
             <StyledMainCenterBlock>
               <Search />
               <StyledCenterBlockH2>Треки</StyledCenterBlockH2>
@@ -50,14 +56,26 @@ export const Main = ({music, getTracksError, loading, setCurrentTrack, setIsPlay
                 </StyledPlaylistTitleCol4>
               </StyledContentTitle>
 
-              {getTracksError ? (<StyledGetTrackError>{getTracksError}</StyledGetTrackError>) : (loading &&
-                music.map((track) => {
-                  return <Tracklist key={track.id} track={track} setCurrentTrack = {setCurrentTrack} setIsPlaying={setIsPlaying}/>
-                })) || <SkeletonCardTracklist />}
+              {getTracksError ? (
+                <StyledGetTrackError>{getTracksError}</StyledGetTrackError>
+              ) : (
+                (loading &&
+                  music.map((track) => {
+                    return (
+                      <Tracklist
+                        key={track.id}
+                        track={track}
+                        setCurrentTrack={setCurrentTrack}
+                        setIsPlaying={setIsPlaying}
+                        isPlaying={isPlaying}
+                        currentTrack={currentTrack}
+                      />
+                    )
+                  })) || <SkeletonCardTracklist />
+              )}
             </StyledMainCenterBlock>
             <Sidebar loading={loading} />
           </StyledMain>
-         
         </StyledContainer>
       </StyledWrapper>
     </Fragment>

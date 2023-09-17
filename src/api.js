@@ -1,5 +1,5 @@
 export async function getTracks() {
-  const response = await fetch('https://painassasin.online/catalog/track/all/')
+  const response = await fetch('https://skypro-music-api.skyeng.tech/catalog/track/all/')
   const data = await response.json()
   if (!response.ok) {
     throw new Error('Ошибка сервера')
@@ -7,7 +7,7 @@ export async function getTracks() {
   return data
 }
 export function authUser(email, password) {
-  return fetch('https://painassasin.online/user/signup/', {
+  return fetch('https://skypro-music-api.skyeng.tech/user/signup/', {
     method: 'POST',
     body: JSON.stringify({
       email,
@@ -41,7 +41,7 @@ export function authUser(email, password) {
 }
 
 export function loginUser(email, password) {
-  return fetch('https://painassasin.online/user/login/', {
+  return fetch('https://skypro-music-api.skyeng.tech/user/login/', {
     method: 'POST',
     body: JSON.stringify({
       email,

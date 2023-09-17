@@ -45,6 +45,17 @@ export const StyledButtonPrev = styled.div`
 export const StyledButtonPrevSvg = styled.svg`
   width: 15px;
   height: 14px;
+  cursor: pointer;
+  fill: #d9d9d9;
+  stroke: #d9d9d9;
+  &:hover {
+    stroke: #696969;
+    fill: #696969;
+  }
+  &:active {
+    stroke: #d9d9d9;
+    fill: #d9d9d9;
+  }
 `
 export const StyledButtonPlay = styled.div`
   ${buttonMixin}
@@ -69,8 +80,17 @@ export const StyledButtonNext = styled.div`
 export const StyledButtonNextSvg = styled.svg`
   width: 15px;
   height: 14px;
-  fill: inherit;
+  fill: #d9d9d9;
   stroke: #d9d9d9;
+  cursor: pointer;
+  &:hover {
+    stroke: #696969;
+    fill: #696969;
+  }
+  &:active {
+    stroke: #d9d9d9;
+    fill: #d9d9d9;
+  }
 `
 export const StyledButtonRepeat = styled.div`
   ${buttonMixin};

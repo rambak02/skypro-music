@@ -5,11 +5,11 @@ import {
   StyledContentPlaylist,
 } from './Tracklist.styled'
 
-export function Tracklist({track, setCurrentTrack, currentTrack, setIsPlaying}) {
+export function Tracklist({track, setCurrentTrack, currentTrack, setIsPlaying, isPlaying}) {
   return (
     <StyledCenterBlockContent>
       <StyledContentPlaylist>
-            <Track  setIsPlaying={setIsPlaying} key={track.id} track={track} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack}/>
+            <Track  setIsPlaying={setIsPlaying} key={track.id} track={track} setCurrentTrack={setCurrentTrack} currentTrack={currentTrack} isPlaying={isPlaying}/>
       </StyledContentPlaylist>
     </StyledCenterBlockContent>
   )

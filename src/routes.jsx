@@ -9,12 +9,13 @@ import { ProtectedRoute } from './component/ProtectedRoute/ProtectedRoute'
 import LoginPage from './pages/login/LoginPage'
 
 export const AppRoutes = ({
-  user,
+  localUser,
   onAuthButtonClick,
   music,
   loading,
   getTracksError,
   setCurrentTrack,
+  isPlaying,
   setIsPlaying,
   error,
   setError,
@@ -25,14 +26,17 @@ export const AppRoutes = ({
   repeatPassword,
   setRepeatPassword,
   primaryButton, 
+  currentTrack
 }) => {
   return (
     <Routes>
-      <Route element={<ProtectedRoute isAllowed={user} />}>
+      <Route element={<ProtectedRoute isAllowed={localUser} />}>
         <Route
           path="/"
           element={
             <Main
+            currentTrack={currentTrack}
+            isPlaying={isPlaying}
               setIsPlaying={setIsPlaying}
               music={music}
               loading={loading}
