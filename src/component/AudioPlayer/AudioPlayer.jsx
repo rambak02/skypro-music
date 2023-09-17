@@ -1,6 +1,10 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import ProgressBar from './ProgressBar'
-import { nextTrack, prevTrack } from '../../store/actions/creators/track'
+import {
+  nextTrack,
+  prevTrack,
+  toggleShuffled,
+} from '../../store/actions/creators/track'
 import {
   StyledBar,
   StyledBarContent,
@@ -55,7 +59,10 @@ export function AudioPlayer({
 }) {
   const dispatch = useDispatch()
   const audioRef = useRef(null)
-
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [shuffledTracks, setShuffledTracks] = useState([])
+  const [shuffledIndex, setShuffledIndex] = useState(0)
+  const [shuffleTrackEnable, setShuffleTrackEnable] = useState(false)
   const handleStart = () => {
     audioRef.current.play()
     setIsPlaying(true)
@@ -97,32 +104,98 @@ export function AudioPlayer({
     setIsRepeat(!isRepeat)
   }
   const handleNextTrack = () => {
-    const currentId = music.findIndex((track) => track.id === currentTrack.id)
-    const nextId = currentId + 1
-    let nextMusic = music[nextId]
-    if (nextMusic) {
+    if (shuffleTrackEnable) {
+      if (shuffledIndex < shuffledTracks.length - 1) {
+        setShuffledIndex(shuffledIndex + 1)
+      } else {
+        // Если достигнут конец массива перемешанных треков, начинаем сначала
+        setShuffledIndex(0)
+      }
+      const nextMusic = shuffledTracks[shuffledIndex]
       setCurrentTrack(nextMusic)
       dispatch(nextTrack(nextMusic))
-      handleStart
-      setIsPlaying(true)
     } else {
-      nextTrack = music[0]
-      setCurrentTrack(nextMusic)
-      dispatch(nextTrack(nextMusic))
-      handleStart
-      setIsPlaying(true)
+      // Если Shuffle выключен
+      const currentId = music.findIndex((track) => track.id === currentTrack.id)
+      const nextId = currentId + 1
+      let nextMusic = music[nextId]
+      if (nextMusic) {
+        setCurrentTrack(nextMusic)
+        dispatch(nextTrack(nextMusic))
+      }
+    }
+    // Запускаем воспроизведение следующего трека
+    handleStart()
+  }
+
+  const shuffleTracks = () => {
+    const shuffledMusic = [...music]
+    for (let i = shuffledMusic.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffledMusic[i], shuffledMusic[j]] = [
+        shuffledMusic[j],
+        shuffledMusic[i],
+      ]
+    }
+    return shuffledMusic
+  }
+  useEffect(() => {
+    if (shuffleTrackEnable) {
+      const newShuffledTracks = shuffleTracks()
+      setShuffledTracks(newShuffledTracks)
+      setShuffledIndex(0)
+    } else {
+      setShuffledTracks([])
+    }
+  }, [shuffleTrackEnable])
+  const handleShuffle = () => {
+    if (!shuffleTrackEnable) {
+      setShuffleTrackEnable(true)
+      const newShuffledTracks = shuffleTracks(music)
+      setShuffledTracks(newShuffledTracks)
+      setShuffledIndex(0)
+      dispatch(toggleShuffled(newShuffledTracks, true))
+    } else {
+      setShuffleTrackEnable(false)
+      setShuffledTracks([])
+      dispatch(toggleShuffled([], false))
     }
   }
   const handlePrevTrack = () => {
-    const currentId = music.findIndex((track) => track.id === currentTrack.id)
-    const prevId = currentId - 1
-    let prevMusic = music[prevId]
-    if (prevMusic) {
-      setCurrentTrack(prevMusic)
-      dispatch(prevTrack(prevMusic))
-      handleStart
-      setIsPlaying(true)
-    } 
+    if (shuffleTrackEnable) {
+      const prevIndex = (currentIndex - 1) % music.length
+      setCurrentIndex(nextIndex)
+      if (shuffledTracks.length > 0) {
+        if (shuffledIndex < shuffledTracks.length - 1) {
+          setShuffledIndex(shuffledIndex - 1)
+        } else {
+          setShuffledIndex(0)
+        }
+        const prevMusic = shuffledTracks[shuffledIndex]
+        setCurrentTrack(prevMusic)
+        dispatch(prevTrack(prevMusic))
+      } else {
+        const prevMusic = music[prevIndex]
+        setCurrentTrack(prevMusic)
+        dispatch(prevTrack(prevMusic))
+      }
+    } else {
+      const currentId = music.findIndex((track) => track.id === currentTrack.id)
+      const prevId = currentId - 1
+      let prevMusic = music[prevId]
+      if (prevMusic) {
+        setCurrentTrack(prevMusic)
+        dispatch(prevTrack(prevMusic))
+        handleStart
+        setIsPlaying(true)
+      } else {
+        prevMusic = music[music.length - 1]
+        setCurrentTrack(prevMusic)
+        dispatch(prevTrack(prevMusic))
+        handleStart
+        setIsPlaying(true)
+      }
+    }
   }
   const togglePlay = isPlaying ? handleStop : handleStart
   useEffect(() => {
@@ -180,7 +253,10 @@ export function AudioPlayer({
                     ></use>
                   </StyledButtonRepeatSvg>
                 </StyledButtonRepeat>
-                <StyledButtonShuffle className=" _btn-icon">
+                <StyledButtonShuffle
+                  className=" _btn-icon"
+                  onClick={handleShuffle}
+                >
                   <StyledButtonShuffleSvg alt="shuffle">
                     <use xlinkHref="img/icon/sprite.svg#icon-shuffle"></use>
                   </StyledButtonShuffleSvg>

@@ -19,9 +19,10 @@ export const prevTrack = (track) => ({
         track
     }
 })
-export const toggleShuffled = (track) => ({
+export const toggleShuffled = (shuffledPlaylist, shuffled) => ({
     type: TOGGLE_SHUFFLED,
     payload: {
-        id: track.id
+        shuffledPlaylist, 
+        shuffled
     }
 })

@@ -16,7 +16,7 @@ export default function ProgressBar({
         onChange={(event) => setCurrentTime(event.target.value)}
         type="range"
         min={0}
-        max={durationS}
+        max={durationS.toString()}
         value={currentTime}
         step={0.01}
         $color="#B672FF"

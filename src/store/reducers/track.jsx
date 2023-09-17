@@ -18,7 +18,6 @@ export default function trackReducer(state = initialState, action) {
       return {
         ...state,
         currentTrack: track,
-        currentTrackId: track.id,
         playing: true, 
       };
     }
@@ -28,7 +27,6 @@ export default function trackReducer(state = initialState, action) {
       return {
         ...state,
         currentTrack: track,
-        currentTrackId: track.id, 
       };
     }
     case PREV_TRACK: {
@@ -36,10 +34,15 @@ export default function trackReducer(state = initialState, action) {
       return {
         ...state,
         currentTrack: track,
-        currentTrackId: track.id, 
       };
     }
     case TOGGLE_SHUFFLED: {
+      const { shuffledPlaylist, shuffled } = action.payload
+      return {
+        ...state, 
+        shuffled: !shuffled,
+        shuffledPlaylist
+      }
     }
 
     default:
